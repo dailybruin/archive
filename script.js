@@ -10,7 +10,7 @@ var losax
 var customrotate = 0
 var preroundrotate = 0
 var driveurl = ''
-var dbpageid = '116770' // UPDATE: change default year on load. (Add 1)
+var dbpageid = '116771' // UPDATE: change default year on load. (Add 1)
 var reeldata = [
   [
     'reel_number',
@@ -3324,6 +3324,12 @@ function rundate() {
   ) {
     datebasedid = 116770
   }
+	if (
+    new Date('01/1/2021').getTime() <= selectedDate &&
+    selectedDate < new Date('01/1/2022').getTime()
+  ) {
+    datebasedid = 116771
+}
 	// UPDATE: duplicate another if statement with everything augmented by 1
   window.location.replace(
     String(window.location).split('#')[0] + '#' + Math.round(datebasedid)
