@@ -1008,8 +1008,8 @@ function loadnewpage() {
       '0B9y1-prT44zAeUVUNDg4UFdvU3M',
       '0B8WE6yj3c61XUVNMTFQ3SllGazA',
       '1IUbV74C31HOZcf9x97bDVce4hnfFKRlg',
-      '1ay-ptXcLRx4yVaOH7xOeEkxmO6IVbdn0',
-	    '11qpdQ-t8nt_Rtx1t5VwotACKr_l08Xrt',
+           '1ay-ptXcLRx4yVaOH7xOeEkxmO6IVbdn0',
+			'11qpdQ-t8nt_Rtx1t5VwotACKr_l08Xrt',
 	    '1hXyfU3sZJfJi3ojFWtMyso2-IZqEgPkz'
     ]
 		// UPDATE: take the last part of the google drive link of the folder and add to the array above
