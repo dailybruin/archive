@@ -985,7 +985,7 @@ function loadnewpage() {
   } else if (
     isInteger(Number(dbpageid)) == true &&
     Number(dbpageid) >= 116753 &&
-    Number(dbpageid) <= 116770
+    Number(dbpageid) <= 116771
   ) {
     //Dbpageid range for google drive is 116,753 to 116,768.
     var dataid = dbpageid
