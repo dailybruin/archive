@@ -3330,7 +3330,7 @@ function rundate() {
     selectedDate < new Date('01/1/2022').getTime()
   ) {
     datebasedid = 116771
-}
+  }
 	// UPDATE: duplicate another if statement with everything augmented by 1
   window.location.replace(
     String(window.location).split('#')[0] + '#' + Math.round(datebasedid)
