@@ -276,8 +276,8 @@ function zoomout() {
 
 function previousid() {
   var newid
-  if (parseInt(dbpageid) > 1 && parseInt(dbpageid) <= 116768) {
-    //Maximum possible value for dbpageid is currently set to 116,768.
+  if (parseInt(dbpageid) > 1 && parseInt(dbpageid) <= 116771) {
+    //Maximum possible value for dbpageid is currently set to 116,771.
     newid = parseInt(dbpageid) - 1
     window.location.replace(String(window.location).split('#')[0] + '#' + newid)
     loadnewpage()
@@ -286,8 +286,8 @@ function previousid() {
 
 function nextid() {
   var newid
-  if (parseInt(dbpageid) >= 1 && parseInt(dbpageid) < 116768) {
-    //Maximum possible value for dbpageid is currently set to 116,768.
+  if (parseInt(dbpageid) >= 1 && parseInt(dbpageid) < 116771) {
+    //Maximum possible value for dbpageid is currently set to 116,771.
     newid = parseInt(dbpageid) + 1
     window.location.replace(String(window.location).split('#')[0] + '#' + newid)
     loadnewpage()
@@ -987,7 +987,7 @@ function loadnewpage() {
     Number(dbpageid) >= 116753 &&
     Number(dbpageid) <= 116771
   ) {
-    //Dbpageid range for google drive is 116,753 to 116,768.
+    //Dbpageid range for google drive is 116,753 to 116,771.
     var dataid = dbpageid
     document.getElementById('reeloptions').style.display = 'none'
     var folder = '0B8WE6yj3c61XUVNMTFQ3SllGazA'
@@ -3319,7 +3319,7 @@ function rundate() {
   ) {
     datebasedid = 116769
   }
-	if (
+  if (
     new Date('01/1/2020').getTime() <= selectedDate &&
     selectedDate < new Date('01/1/2021').getTime()
   ) {
