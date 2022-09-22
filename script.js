@@ -231,7 +231,7 @@ function trackhash() {
     String(window.location).split("#")[1] === undefined ||
     String(window.location).split("#")[1] == ""
   ) {
-    window.location.replace(String(window.location).split("#")[0] + "#116768"); //On load without specified dbpageid, dbpageid is set to 116,768.
+    window.location.replace(String(window.location).split("#")[0] + "#116772"); //On load without specified dbpageid, dbpageid is set to 116,768.
   } else if (String(window.location).split("#")[1] != dbpageid) {
     dbpageid = String(window.location).split("#")[1];
     loadnewpage();
