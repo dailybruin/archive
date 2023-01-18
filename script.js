@@ -1016,7 +1016,6 @@ function loadnewpage() {
       "11qpdQ-t8nt_Rtx1t5VwotACKr_l08Xrt",
       "1hXyfU3sZJfJi3ojFWtMyso2-IZqEgPkz",
       "1KOq7rtNH_Uh6InfMhHYXtynlIFtkzzKf",
-      "13NPN3nJ4FchIlr6UQFXc9Da2ndh7xZrR",
     ];
     // UPDATE: take the last part of the google drive link of the folder and add to the array above
     folder = folderlist[dataid - 116753]; //Minimum range for Google Drive is 116,753.
