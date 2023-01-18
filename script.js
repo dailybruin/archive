@@ -10,7 +10,7 @@ var losax;
 var customrotate = 0;
 var preroundrotate = 0;
 var driveurl = "";
-var dbpageid = "116772"; // UPDATE: change default year on load. (Add 1)
+var dbpageid = "116773"; // UPDATE: change default year on load. (Add 1)
 var reeldata = [
   [
     "reel_number",
@@ -231,7 +231,7 @@ function trackhash() {
     String(window.location).split("#")[1] === undefined ||
     String(window.location).split("#")[1] == ""
   ) {
-    window.location.replace(String(window.location).split("#")[0] + "#116772"); //On load without specified dbpageid, dbpageid is set to 116,768.
+    window.location.replace(String(window.location).split("#")[0] + "#116773"); //On load without specified dbpageid, dbpageid is set to 116,768.
   } else if (String(window.location).split("#")[1] != dbpageid) {
     dbpageid = String(window.location).split("#")[1];
     loadnewpage();
@@ -276,7 +276,7 @@ function zoomout() {
 
 function previousid() {
   var newid;
-  if (parseInt(dbpageid) > 1 && parseInt(dbpageid) <= 116772) {
+  if (parseInt(dbpageid) > 1 && parseInt(dbpageid) <= 116773) {
     //Maximum possible value for dbpageid is currently set to 116,772.
     newid = parseInt(dbpageid) - 1;
     window.location.replace(
@@ -288,7 +288,7 @@ function previousid() {
 
 function nextid() {
   var newid;
-  if (parseInt(dbpageid) >= 1 && parseInt(dbpageid) < 116772) {
+  if (parseInt(dbpageid) >= 1 && parseInt(dbpageid) < 116773) {
     //Maximum possible value for dbpageid is currently set to 116,772.
     newid = parseInt(dbpageid) + 1;
     window.location.replace(
@@ -989,7 +989,7 @@ function loadnewpage() {
   } else if (
     isInteger(Number(dbpageid)) == true &&
     Number(dbpageid) >= 116753 &&
-    Number(dbpageid) <= 116772
+    Number(dbpageid) <= 116773
   ) {
     //Dbpageid range for google drive is 116,753 to 116,772.
     var dataid = dbpageid;
@@ -3341,6 +3341,12 @@ function rundate() {
     selectedDate < new Date("01/1/2023").getTime()
   ) {
     datebasedid = 116772;
+  }
+  if (
+    new Date("01/1/2023").getTime() <= selectedDate &&
+    selectedDate < new Date("01/1/2024").getTime()
+  ) {
+    datebasedid = 116773;
   }
   // UPDATE: duplicate another if statement with everything augmented by 1
   window.location.replace(
