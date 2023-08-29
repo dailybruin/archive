@@ -1023,7 +1023,7 @@ function loadnewpage() {
     document.getElementById("archivedisplay").innerHTML =
       "<div id='imageframe'><iframe src='https://drive.google.com/embeddedfolderview?id=" +
       folder +
-      "#grid'></iframe></div>";
+      "#grid' id='archiveIframe'></iframe></div>";
   } else {
     alert("Select a valid number.");
   }

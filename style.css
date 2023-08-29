@@ -135,6 +135,9 @@ div#imageframe {
   height:100%;
   width:auto;
 }
+#archiveIframe{
+  min-height: 300px;
+}
 img {
   max-height:100%; max-width:1000%;
 }
