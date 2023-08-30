@@ -129,7 +129,7 @@ select#monthselect, select#yearselect {
 div#imageframe {
     overflow-x: scroll;
     overflow-y: scroll;
-  background-color: black;
+  background-color: white;
   top:0;
   left:0;
   height:100%;
