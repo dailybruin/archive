@@ -967,37 +967,38 @@ function loadnewpage() {
       archiveURL +
       `'> ${monthText} ${selectedYear} Archive Link</a>`;
     const oldElement =
-      "<div id='imageframe'><img src='https://ia" + // image links changed and don't work
-      server +
-      ".us.archive.org/BookReader/BookReaderImages.php?zip=/" +
-      zip +
-      "/items/ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "/ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "_jp2." +
-      tarzip +
-      "&file=ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "_jp2/ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "_" +
-      parseInt(reelpage).pad(4) +
-      ".jp2&scale=" +
-      zoom +
-      "&rotate=" +
-      rotate +
-      "'>" +
-      newArchiveElement +
-      "</div>";
+    "<div id='imageframe'>" +
+    /*"<img src='https://ia" + // image links changed and don't work
+    server +
+    ".us.archive.org/BookReader/BookReaderImages.php?zip=/" +
+    zip +
+    "/items/ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "/ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "_jp2." +
+    tarzip +
+    "&file=ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "_jp2/ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "_" +
+    parseInt(reelpage).pad(4) +
+    ".jp2&scale=" +
+    zoom +
+    "&rotate=" +
+    rotate +
+    "'>" +*/
+    newArchiveElement +
+    "</div>";
     document.getElementById("archivedisplay").innerHTML = oldElement;
     document.getElementById("reeloptions").style.display = "block";
     document.getElementById("reeloptions").style.visibility = "visible";
