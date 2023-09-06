@@ -1069,11 +1069,12 @@ function checkKeycode(event) {
 document.onkeydown = checkKeycode;
 
 function rundate() {
-  var selectedDate = new Date(
-    document.getElementById("monthselect").value +
-      "/10/" +
-      document.getElementById("yearselect").value
-  ).getTime();
+  const selectedYear = document.getElementById("yearselect").value;
+  const date = new Date(
+    document.getElementById("monthselect").value + "/10/" + selectedYear
+  );
+  const selectedYearNumber = date.getFullYear();
+  const selectedDate = date.getTime();
   var datebasedid;
   if (
     new Date("01/01/1914").getTime() <= selectedDate &&
@@ -3238,133 +3239,11 @@ function rundate() {
             new Date("10/21/2002").getTime())) +
       116153;
   }
-  if (
-    new Date("01/1/2003").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2004").getTime()
-  ) {
-    datebasedid = 116753;
+  else if (selectedYearNumber >= 2003 && selectedYearNumber <= 2023){
+    let offset = selectedYearNumber - 2003;
+    datebasedid = 116753 + offset;
   }
-  if (
-    new Date("01/1/2004").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2005").getTime()
-  ) {
-    datebasedid = 116754;
-  }
-  if (
-    new Date("01/1/2005").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2006").getTime()
-  ) {
-    datebasedid = 116755;
-  }
-  if (
-    new Date("01/1/2006").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2007").getTime()
-  ) {
-    datebasedid = 116756;
-  }
-  if (
-    new Date("01/1/2007").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2008").getTime()
-  ) {
-    datebasedid = 116757;
-  }
-  if (
-    new Date("01/1/2008").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2009").getTime()
-  ) {
-    datebasedid = 116758;
-  }
-  if (
-    new Date("01/1/2009").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2010").getTime()
-  ) {
-    datebasedid = 116759;
-  }
-  if (
-    new Date("01/1/2010").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2011").getTime()
-  ) {
-    datebasedid = 116760;
-  }
-  if (
-    new Date("01/1/2011").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2012").getTime()
-  ) {
-    datebasedid = 116761;
-  }
-  if (
-    new Date("01/1/2012").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2013").getTime()
-  ) {
-    datebasedid = 116762;
-  }
-  if (
-    new Date("01/1/2013").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2014").getTime()
-  ) {
-    datebasedid = 116763;
-  }
-  if (
-    new Date("01/1/2014").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2015").getTime()
-  ) {
-    datebasedid = 116764;
-  }
-  if (
-    new Date("01/1/2015").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2016").getTime()
-  ) {
-    datebasedid = 116765;
-  }
-  if (
-    new Date("01/1/2016").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2017").getTime()
-  ) {
-    datebasedid = 116766;
-  }
-  if (
-    new Date("01/1/2017").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2018").getTime()
-  ) {
-    datebasedid = 116767;
-  }
-  if (
-    new Date("01/1/2018").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2019").getTime()
-  ) {
-    datebasedid = 116768;
-  }
-  if (
-    new Date("01/1/2019").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2020").getTime()
-  ) {
-    datebasedid = 116769;
-  }
-  if (
-    new Date("01/1/2020").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2021").getTime()
-  ) {
-    datebasedid = 116770;
-  }
-  if (
-    new Date("01/1/2021").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2022").getTime()
-  ) {
-    datebasedid = 116771;
-  }
-  if (
-    new Date("01/1/2022").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2023").getTime()
-  ) {
-    datebasedid = 116772;
-  }
-  if (
-    new Date("01/1/2023").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2024").getTime()
-  ) {
-    datebasedid = 116773;
-  }
-  // UPDATE: duplicate another if statement with everything augmented by 1
+  // UPDATE: increase bounds of if statement to include new year
   window.location.replace(
     String(window.location).split("#")[0] + "#" + Math.round(datebasedid)
   );
