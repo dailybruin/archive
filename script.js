@@ -954,11 +954,18 @@ function loadnewpage() {
     server = parseInt(reeldata[reel][3]);
     tarzip = reeldata[reel][6];
     zip = parseInt(reeldata[reel][4]);
+    // example: https://archive.org/details/ucladailybruin44losa/page/n0/mode/2up
     const archiveURL =
-      "https://archive.org/details/ucladailybruin" + reel + "losa";
+      `https://archive.org/details/ucladailybruin${reel}losa/page/n${parseInt(reelpage)}/`;
+    const selectedMonth = document.getElementById("monthselect").value; // integer
+    const monthText =
+      document.getElementById("monthselect").options[selectedMonth - 1]
+        .textContent;
     const selectedYear = document.getElementById("yearselect").value;
     const newArchiveElement =
-      "<a href='" + archiveURL + `'> ${selectedYear} Archive Link</a>`;
+      "<a href='" +
+      archiveURL +
+      `'> ${monthText} ${selectedYear} Archive Link</a>`;
     const oldElement =
       "<div id='imageframe'><img src='https://ia" + // image links changed and don't work
       server +
