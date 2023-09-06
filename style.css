@@ -135,6 +135,11 @@ div#imageframe {
   height:100%;
   width:auto;
 }
+div#imageframe a {
+  position: relative;
+  top:50%;
+  font-size: 36px;
+}
 #archiveIframe{
   min-height: 300px;
 }
