@@ -954,36 +954,47 @@ function loadnewpage() {
     server = parseInt(reeldata[reel][3]);
     tarzip = reeldata[reel][6];
     zip = parseInt(reeldata[reel][4]);
-    document.getElementById("archivedisplay").innerHTML =
-      "<div id='imageframe'><img src='https://ia" +
-      server +
-      ".us.archive.org/BookReader/BookReaderImages.php?zip=/" +
-      zip +
-      "/items/ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "/ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "_jp2." +
-      tarzip +
-      "&file=ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "_jp2/ucladailybruin" +
-      reel.pad(2) +
-      "losa" +
-      losax +
-      "_" +
-      parseInt(reelpage).pad(4) +
-      ".jp2&scale=" +
-      zoom +
-      "&rotate=" +
-      rotate +
-      "'></div>";
+    // example: https://archive.org/details/ucladailybruin44losa/page/n0/mode/2up
+    const archiveURL =
+      `https://archive.org/details/ucladailybruin${reel}losa/page/n${parseInt(reelpage)}/`;
+    const newArchiveElement =
+      "<a href='" +
+      archiveURL +
+      `'> Reel ${reel} Archive Link</a>`;
+    const oldElement =
+    "<div id='imageframe'>" +
+    /*"<img src='https://ia" + // image links changed and don't work
+    server +
+    ".us.archive.org/BookReader/BookReaderImages.php?zip=/" +
+    zip +
+    "/items/ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "/ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "_jp2." +
+    tarzip +
+    "&file=ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "_jp2/ucladailybruin" +
+    reel.pad(2) +
+    "losa" +
+    losax +
+    "_" +
+    parseInt(reelpage).pad(4) +
+    ".jp2&scale=" +
+    zoom +
+    "&rotate=" +
+    rotate +
+    "'>" +*/
+    newArchiveElement +
+    "</div>";
+    document.getElementById("archivedisplay").innerHTML = oldElement;
     document.getElementById("reeloptions").style.display = "block";
     document.getElementById("reeloptions").style.visibility = "visible";
   } else if (
@@ -994,23 +1005,24 @@ function loadnewpage() {
     //Dbpageid range for google drive is 116,753 to 116,772.
     var dataid = dbpageid;
     document.getElementById("reeloptions").style.display = "none";
-    var folder = "0B8WE6yj3c61XUVNMTFQ3SllGazA";
+    var folder =
+      "0B8WE6yj3c61XUVNMTFQ3SllGazA?resourcekey=0-zd6l6TVRHu1dlTFpOKhhTQ"; // 2017
     var folderlist = [
-      "0B9y1-prT44zAMjRjNXNEYlFPelk",
-      "0B9y1-prT44zAQUV5eVRJZHhpcWM",
-      "0B9y1-prT44zANGMxU3VHTnBpek0",
-      "0B9y1-prT44zAZW5YYkVWR1lBRVU",
-      "0B9y1-prT44zAT2JvalFwQlZid1E",
-      "0B9y1-prT44zAdE1BNUQ3RlY1b28",
-      "0B9y1-prT44zAeExhdGVfYm1FVE0",
-      "0B9y1-prT44zAdU16d0lNOGFNYzA",
-      "0B9y1-prT44zAUjhkc2dlY05fLVU",
-      "0B9y1-prT44zAVzlCTE9qMzRFZjA",
-      "0B9y1-prT44zASG9vQUdVYXBybFk",
-      "0B9y1-prT44zAQXhPRGFRTUVJVkE",
-      "0B9y1-prT44zAcVlwYlRFdGR3MWs",
-      "0B9y1-prT44zAeUVUNDg4UFdvU3M",
-      "0B8WE6yj3c61XUVNMTFQ3SllGazA",
+      "0B9y1-prT44zAMjRjNXNEYlFPelk?resourcekey=0-j4BkOw1e71-XAKhiDqalmg&usp=drive_link", // 2003
+      "0B9y1-prT44zAQUV5eVRJZHhpcWM?resourcekey=0-ucuXCMDVznBZtNnDhv89AQ&usp=drive_link",
+      "0B9y1-prT44zANGMxU3VHTnBpek0?resourcekey=0-Iav6_HY4pFImor640UOlXg&usp=drive_link",
+      "0B9y1-prT44zAZW5YYkVWR1lBRVU?resourcekey=0-N06Ur22T1-SNdb3SDvVBlQ",
+      "0B9y1-prT44zAT2JvalFwQlZid1E?resourcekey=0-l_Nr6CFXsGFhkYaQWjVzWQ&usp=drive_link",
+      "0B9y1-prT44zAdE1BNUQ3RlY1b28?resourcekey=0-pXjoqHSEl_EkhzfU49SYCg&usp=drive_link",
+      "0B9y1-prT44zAeExhdGVfYm1FVE0?resourcekey=0-PiyyZ85ladnV4m966uiQDw&usp=drive_link",
+      "0B9y1-prT44zAdU16d0lNOGFNYzA?resourcekey=0-yuaqV6GKvDgddxIzBG23Jg&usp=drive_link", // 2010
+      "0B9y1-prT44zAUjhkc2dlY05fLVU?resourcekey=0-V4R8jEp7wDWld4Ium23JSg&usp=drive_link",
+      "0B9y1-prT44zAVzlCTE9qMzRFZjA?resourcekey=0-9aq3Qd92AkrBSiHAhn3Prw&usp=drive_link",
+      "0B9y1-prT44zASG9vQUdVYXBybFk?resourcekey=0-yEIGMfKLWGsH2gfLpCMSTg&usp=drive_link",
+      "0B9y1-prT44zAQXhPRGFRTUVJVkE?resourcekey=0-Riwx5k8zP86TQtLyg8wxFA&usp=drive_link",
+      "0B9y1-prT44zAcVlwYlRFdGR3MWs?resourcekey=0-hUJ91a89azdkRTNQD_MN2w&usp=drive_link",
+      "0B9y1-prT44zAeUVUNDg4UFdvU3M?resourcekey=0-buevVjEV7ecrr-ketdh7Cg",
+      "0B8WE6yj3c61XUVNMTFQ3SllGazA?resourcekey=0-zd6l6TVRHu1dlTFpOKhhTQ", // 2017
       "1IUbV74C31HOZcf9x97bDVce4hnfFKRlg",
       "1ay-ptXcLRx4yVaOH7xOeEkxmO6IVbdn0",
       "11qpdQ-t8nt_Rtx1t5VwotACKr_l08Xrt",
@@ -1020,10 +1032,22 @@ function loadnewpage() {
     ];
     // UPDATE: take the last part of the google drive link of the folder and add to the array above
     folder = folderlist[dataid - 116753]; //Minimum range for Google Drive is 116,753.
-    document.getElementById("archivedisplay").innerHTML =
-      "<div id='imageframe'><iframe src='https://drive.google.com/embeddedfolderview?id=" +
-      folder +
-      "#grid'></iframe></div>";
+    let archiveDisplayElement;
+    const year = dataid - 116753 + 2003;
+    if (folder.includes("?resourcekey=")) {
+      archiveDisplayElement =
+        "<div id='imageframe'><a href='https://drive.google.com/drive/folders/" +
+        folder +
+        "'>" +
+        `${year} Archive Folder` +
+        "</a></div>";
+    } else {
+      archiveDisplayElement =
+        "<div id='imageframe'><iframe src='https://drive.google.com/embeddedfolderview?id=" +
+        folder +
+        "#grid' id='archiveIframe'></iframe></div>";
+    }
+    document.getElementById("archivedisplay").innerHTML = archiveDisplayElement;
   } else {
     alert("Select a valid number.");
   }
@@ -1054,19 +1078,19 @@ function checkKeycode(event) {
 document.onkeydown = checkKeycode;
 
 function rundate() {
-  var selectedDate = new Date(
-    document.getElementById("monthselect").value +
-      "/10/" +
-      document.getElementById("yearselect").value
-  ).getTime();
+  const selectedYear = document.getElementById("yearselect").value;
+  const date = new Date(
+    document.getElementById("monthselect").value + "/10/" + selectedYear
+  );
+  const selectedYearNumber = date.getFullYear();
+  const selectedDate = date.getTime();
   var datebasedid;
   if (
     new Date("01/01/1914").getTime() <= selectedDate &&
     selectedDate < new Date("09/10/1915").getTime()
   ) {
     datebasedid = 1;
-  }
-  if (
+  } else if (
     new Date("09/10/1915").getTime() <= selectedDate &&
     selectedDate < new Date("02/18/1921").getTime()
   ) {
@@ -1076,8 +1100,7 @@ function rundate() {
           (new Date("02/18/1921").getTime() -
             new Date("09/10/1915").getTime())) +
       1;
-  }
-  if (
+  } else if (
     new Date("02/18/1921").getTime() <= selectedDate &&
     selectedDate < new Date("03/25/1924").getTime()
   ) {
@@ -1087,8 +1110,7 @@ function rundate() {
           (new Date("03/25/1924").getTime() -
             new Date("02/18/1921").getTime())) +
       469;
-  }
-  if (
+  } else if (
     new Date("03/25/1924").getTime() <= selectedDate &&
     selectedDate < new Date("02/11/1926").getTime()
   ) {
@@ -1098,8 +1120,7 @@ function rundate() {
           (new Date("02/11/1926").getTime() -
             new Date("03/25/1924").getTime())) +
       1163;
-  }
-  if (
+  } else if (
     new Date("02/11/1926").getTime() <= selectedDate &&
     selectedDate < new Date("02/17/1927").getTime()
   ) {
@@ -1109,8 +1130,7 @@ function rundate() {
           (new Date("02/17/1927").getTime() -
             new Date("02/11/1926").getTime())) +
       2008;
-  }
-  if (
+  } else if (
     new Date("02/17/1927").getTime() <= selectedDate &&
     selectedDate < new Date("01/12/1928").getTime()
   ) {
@@ -1120,8 +1140,7 @@ function rundate() {
           (new Date("01/12/1928").getTime() -
             new Date("02/17/1927").getTime())) +
       2731;
-  }
-  if (
+  } else if (
     new Date("01/12/1928").getTime() <= selectedDate &&
     selectedDate < new Date("02/11/1929").getTime()
   ) {
@@ -1131,8 +1150,7 @@ function rundate() {
           (new Date("02/11/1929").getTime() -
             new Date("01/12/1928").getTime())) +
       3426;
-  }
-  if (
+  } else if (
     new Date("02/11/1929").getTime() <= selectedDate &&
     selectedDate < new Date("11/25/1929").getTime()
   ) {
@@ -1142,8 +1160,7 @@ function rundate() {
           (new Date("11/25/1929").getTime() -
             new Date("02/11/1929").getTime())) +
       4153;
-  }
-  if (
+  } else if (
     new Date("11/25/1929").getTime() <= selectedDate &&
     selectedDate < new Date("10/30/1930").getTime()
   ) {
@@ -1153,8 +1170,7 @@ function rundate() {
           (new Date("10/30/1930").getTime() -
             new Date("11/25/1929").getTime())) +
       4817;
-  }
-  if (
+  } else if (
     new Date("10/30/1930").getTime() <= selectedDate &&
     selectedDate < new Date("09/17/1931").getTime()
   ) {
@@ -1164,8 +1180,7 @@ function rundate() {
           (new Date("09/17/1931").getTime() -
             new Date("10/30/1930").getTime())) +
       5522;
-  }
-  if (
+  } else if (
     new Date("09/17/1931").getTime() <= selectedDate &&
     selectedDate < new Date("10/3/1932").getTime()
   ) {
@@ -1175,8 +1190,7 @@ function rundate() {
           (new Date("10/3/1932").getTime() -
             new Date("09/17/1931").getTime())) +
       6229;
-  }
-  if (
+  } else if (
     new Date("10/3/1932").getTime() <= selectedDate &&
     selectedDate < new Date("08/4/1933").getTime()
   ) {
@@ -1185,8 +1199,7 @@ function rundate() {
         ((selectedDate - new Date("10/3/1932").getTime()) /
           (new Date("08/4/1933").getTime() - new Date("10/3/1932").getTime())) +
       6966;
-  }
-  if (
+  } else if (
     new Date("08/4/1933").getTime() <= selectedDate &&
     selectedDate < new Date("05/14/1934").getTime()
   ) {
@@ -1196,8 +1209,7 @@ function rundate() {
           (new Date("05/14/1934").getTime() -
             new Date("08/4/1933").getTime())) +
       7645;
-  }
-  if (
+  } else if (
     new Date("05/14/1934").getTime() <= selectedDate &&
     selectedDate < new Date("04/29/1935").getTime()
   ) {
@@ -1207,8 +1219,7 @@ function rundate() {
           (new Date("04/29/1935").getTime() -
             new Date("05/14/1934").getTime())) +
       8322;
-  }
-  if (
+  } else if (
     new Date("04/29/1935").getTime() <= selectedDate &&
     selectedDate < new Date("03/10/1936").getTime()
   ) {
@@ -1218,8 +1229,7 @@ function rundate() {
           (new Date("03/10/1936").getTime() -
             new Date("04/29/1935").getTime())) +
       9008;
-  }
-  if (
+  } else if (
     new Date("03/10/1936").getTime() <= selectedDate &&
     selectedDate < new Date("01/6/1937").getTime()
   ) {
@@ -1229,8 +1239,7 @@ function rundate() {
           (new Date("01/6/1937").getTime() -
             new Date("03/10/1936").getTime())) +
       9609;
-  }
-  if (
+  } else if (
     new Date("01/6/1937").getTime() <= selectedDate &&
     selectedDate < new Date("11/12/1937").getTime()
   ) {
@@ -1240,8 +1249,7 @@ function rundate() {
           (new Date("11/12/1937").getTime() -
             new Date("01/6/1937").getTime())) +
       10259;
-  }
-  if (
+  } else if (
     new Date("11/12/1937").getTime() <= selectedDate &&
     selectedDate < new Date("12/5/1938").getTime()
   ) {
@@ -1251,8 +1259,7 @@ function rundate() {
           (new Date("12/5/1938").getTime() -
             new Date("11/12/1937").getTime())) +
       10873;
-  }
-  if (
+  } else if (
     new Date("12/5/1938").getTime() <= selectedDate &&
     selectedDate < new Date("12/12/1939").getTime()
   ) {
@@ -1262,8 +1269,7 @@ function rundate() {
           (new Date("12/12/1939").getTime() -
             new Date("12/5/1938").getTime())) +
       11617;
-  }
-  if (
+  } else if (
     new Date("12/12/1939").getTime() <= selectedDate &&
     selectedDate < new Date("11/8/1940").getTime()
   ) {
@@ -1273,8 +1279,7 @@ function rundate() {
           (new Date("11/8/1940").getTime() -
             new Date("12/12/1939").getTime())) +
       12373;
-  }
-  if (
+  } else if (
     new Date("11/8/1940").getTime() <= selectedDate &&
     selectedDate < new Date("12/2/1941").getTime()
   ) {
@@ -1283,8 +1288,7 @@ function rundate() {
         ((selectedDate - new Date("11/8/1940").getTime()) /
           (new Date("12/2/1941").getTime() - new Date("11/8/1940").getTime())) +
       12924;
-  }
-  if (
+  } else if (
     new Date("12/2/1941").getTime() <= selectedDate &&
     selectedDate < new Date("02/18/1943").getTime()
   ) {
@@ -1294,8 +1298,7 @@ function rundate() {
           (new Date("02/18/1943").getTime() -
             new Date("12/2/1941").getTime())) +
       13631;
-  }
-  if (
+  } else if (
     new Date("02/18/1943").getTime() <= selectedDate &&
     selectedDate < new Date("01/24/1945").getTime()
   ) {
@@ -1305,8 +1308,7 @@ function rundate() {
           (new Date("01/24/1945").getTime() -
             new Date("02/18/1943").getTime())) +
       14313;
-  }
-  if (
+  } else if (
     new Date("01/24/1945").getTime() <= selectedDate &&
     selectedDate < new Date("05/21/1946").getTime()
   ) {
@@ -1316,8 +1318,7 @@ function rundate() {
           (new Date("05/21/1946").getTime() -
             new Date("01/24/1945").getTime())) +
       14989;
-  }
-  if (
+  } else if (
     new Date("05/21/1946").getTime() <= selectedDate &&
     selectedDate < new Date("10/6/1947").getTime()
   ) {
@@ -1327,8 +1328,7 @@ function rundate() {
           (new Date("10/6/1947").getTime() -
             new Date("05/21/1946").getTime())) +
       15703;
-  }
-  if (
+  } else if (
     new Date("10/6/1947").getTime() <= selectedDate &&
     selectedDate < new Date("10/22/1948").getTime()
   ) {
@@ -1338,8 +1338,7 @@ function rundate() {
           (new Date("10/22/1948").getTime() -
             new Date("10/6/1947").getTime())) +
       16530;
-  }
-  if (
+  } else if (
     new Date("10/22/1948").getTime() <= selectedDate &&
     selectedDate < new Date("09/23/1949").getTime()
   ) {
@@ -1349,8 +1348,7 @@ function rundate() {
           (new Date("09/23/1949").getTime() -
             new Date("10/22/1948").getTime())) +
       17246;
-  }
-  if (
+  } else if (
     new Date("09/23/1949").getTime() <= selectedDate &&
     selectedDate < new Date("09/13/1950").getTime()
   ) {
@@ -1360,8 +1358,7 @@ function rundate() {
           (new Date("09/13/1950").getTime() -
             new Date("09/23/1949").getTime())) +
       17873;
-  }
-  if (
+  } else if (
     new Date("09/13/1950").getTime() <= selectedDate &&
     selectedDate < new Date("03/16/1951").getTime()
   ) {
@@ -1371,8 +1368,7 @@ function rundate() {
           (new Date("03/16/1951").getTime() -
             new Date("09/13/1950").getTime())) +
       18506;
-  }
-  if (
+  } else if (
     new Date("03/16/1951").getTime() <= selectedDate &&
     selectedDate < new Date("03/20/1952").getTime()
   ) {
@@ -1382,8 +1378,7 @@ function rundate() {
           (new Date("03/20/1952").getTime() -
             new Date("03/16/1951").getTime())) +
       18982;
-  }
-  if (
+  } else if (
     new Date("03/20/1952").getTime() <= selectedDate &&
     selectedDate < new Date("03/20/1953").getTime()
   ) {
@@ -1393,8 +1388,7 @@ function rundate() {
           (new Date("03/20/1953").getTime() -
             new Date("03/20/1952").getTime())) +
       19578;
-  }
-  if (
+  } else if (
     new Date("03/20/1953").getTime() <= selectedDate &&
     selectedDate < new Date("03/26/1954").getTime()
   ) {
@@ -1404,8 +1398,7 @@ function rundate() {
           (new Date("03/26/1954").getTime() -
             new Date("03/20/1953").getTime())) +
       20184;
-  }
-  if (
+  } else if (
     new Date("03/26/1954").getTime() <= selectedDate &&
     selectedDate < new Date("03/28/1955").getTime()
   ) {
@@ -1415,8 +1408,7 @@ function rundate() {
           (new Date("03/28/1955").getTime() -
             new Date("03/26/1954").getTime())) +
       20787;
-  }
-  if (
+  } else if (
     new Date("03/28/1955").getTime() <= selectedDate &&
     selectedDate < new Date("04/2/1956").getTime()
   ) {
@@ -1426,8 +1418,7 @@ function rundate() {
           (new Date("04/2/1956").getTime() -
             new Date("03/28/1955").getTime())) +
       21391;
-  }
-  if (
+  } else if (
     new Date("04/2/1956").getTime() <= selectedDate &&
     selectedDate < new Date("03/15/1957").getTime()
   ) {
@@ -1437,8 +1428,7 @@ function rundate() {
           (new Date("03/15/1957").getTime() -
             new Date("04/2/1956").getTime())) +
       22009;
-  }
-  if (
+  } else if (
     new Date("03/15/1957").getTime() <= selectedDate &&
     selectedDate < new Date("03/19/1958").getTime()
   ) {
@@ -1448,8 +1438,7 @@ function rundate() {
           (new Date("03/19/1958").getTime() -
             new Date("03/15/1957").getTime())) +
       22627;
-  }
-  if (
+  } else if (
     new Date("03/19/1958").getTime() <= selectedDate &&
     selectedDate < new Date("03/6/1959").getTime()
   ) {
@@ -1459,8 +1448,7 @@ function rundate() {
           (new Date("03/6/1959").getTime() -
             new Date("03/19/1958").getTime())) +
       23235;
-  }
-  if (
+  } else if (
     new Date("03/6/1959").getTime() <= selectedDate &&
     selectedDate < new Date("03/3/1960").getTime()
   ) {
@@ -1469,8 +1457,7 @@ function rundate() {
         ((selectedDate - new Date("03/6/1959").getTime()) /
           (new Date("03/3/1960").getTime() - new Date("03/6/1959").getTime())) +
       23851;
-  }
-  if (
+  } else if (
     new Date("03/3/1960").getTime() <= selectedDate &&
     selectedDate < new Date("02/15/1961").getTime()
   ) {
@@ -1480,8 +1467,7 @@ function rundate() {
           (new Date("02/15/1961").getTime() -
             new Date("03/3/1960").getTime())) +
       24459;
-  }
-  if (
+  } else if (
     new Date("02/15/1961").getTime() <= selectedDate &&
     selectedDate < new Date("12/1/1961").getTime()
   ) {
@@ -1491,8 +1477,7 @@ function rundate() {
           (new Date("12/1/1961").getTime() -
             new Date("02/15/1961").getTime())) +
       25060;
-  }
-  if (
+  } else if (
     new Date("12/1/1961").getTime() <= selectedDate &&
     selectedDate < new Date("09/28/1962").getTime()
   ) {
@@ -1502,8 +1487,7 @@ function rundate() {
           (new Date("09/28/1962").getTime() -
             new Date("12/1/1961").getTime())) +
       25668;
-  }
-  if (
+  } else if (
     new Date("09/28/1962").getTime() <= selectedDate &&
     selectedDate < new Date("05/1/1963").getTime()
   ) {
@@ -1513,8 +1497,7 @@ function rundate() {
           (new Date("05/1/1963").getTime() -
             new Date("09/28/1962").getTime())) +
       26261;
-  }
-  if (
+  } else if (
     new Date("05/1/1963").getTime() <= selectedDate &&
     selectedDate < new Date("03/31/1964").getTime()
   ) {
@@ -1524,8 +1507,7 @@ function rundate() {
           (new Date("03/31/1964").getTime() -
             new Date("05/1/1963").getTime())) +
       26861;
-  }
-  if (
+  } else if (
     new Date("03/31/1964").getTime() <= selectedDate &&
     selectedDate < new Date("02/17/1965").getTime()
   ) {
@@ -1535,8 +1517,7 @@ function rundate() {
           (new Date("02/17/1965").getTime() -
             new Date("03/31/1964").getTime())) +
       27485;
-  }
-  if (
+  } else if (
     new Date("02/17/1965").getTime() <= selectedDate &&
     selectedDate < new Date("11/3/1965").getTime()
   ) {
@@ -1546,8 +1527,7 @@ function rundate() {
           (new Date("11/3/1965").getTime() -
             new Date("02/17/1965").getTime())) +
       28111;
-  }
-  if (
+  } else if (
     new Date("11/3/1965").getTime() <= selectedDate &&
     selectedDate < new Date("05/2/1966").getTime()
   ) {
@@ -1556,8 +1536,7 @@ function rundate() {
         ((selectedDate - new Date("11/3/1965").getTime()) /
           (new Date("05/2/1966").getTime() - new Date("11/3/1965").getTime())) +
       28720;
-  }
-  if (
+  } else if (
     new Date("05/2/1966").getTime() <= selectedDate &&
     selectedDate < new Date("02/7/1967").getTime()
   ) {
@@ -1566,8 +1545,7 @@ function rundate() {
         ((selectedDate - new Date("05/2/1966").getTime()) /
           (new Date("02/7/1967").getTime() - new Date("05/2/1966").getTime())) +
       29334;
-  }
-  if (
+  } else if (
     new Date("02/7/1967").getTime() <= selectedDate &&
     selectedDate < new Date("11/30/1967").getTime()
   ) {
@@ -1577,8 +1555,7 @@ function rundate() {
           (new Date("11/30/1967").getTime() -
             new Date("02/7/1967").getTime())) +
       29960;
-  }
-  if (
+  } else if (
     new Date("11/30/1967").getTime() <= selectedDate &&
     selectedDate < new Date("05/7/1968").getTime()
   ) {
@@ -1588,8 +1565,7 @@ function rundate() {
           (new Date("05/7/1968").getTime() -
             new Date("11/30/1967").getTime())) +
       30570;
-  }
-  if (
+  } else if (
     new Date("05/7/1968").getTime() <= selectedDate &&
     selectedDate < new Date("11/25/1968").getTime()
   ) {
@@ -1599,8 +1575,7 @@ function rundate() {
           (new Date("11/25/1968").getTime() -
             new Date("05/7/1968").getTime())) +
       31197;
-  }
-  if (
+  } else if (
     new Date("11/25/1968").getTime() <= selectedDate &&
     selectedDate < new Date("05/13/1969").getTime()
   ) {
@@ -1610,8 +1585,7 @@ function rundate() {
           (new Date("05/13/1969").getTime() -
             new Date("11/25/1968").getTime())) +
       31835;
-  }
-  if (
+  } else if (
     new Date("05/13/1969").getTime() <= selectedDate &&
     selectedDate < new Date("11/18/1969").getTime()
   ) {
@@ -1621,8 +1595,7 @@ function rundate() {
           (new Date("11/18/1969").getTime() -
             new Date("05/13/1969").getTime())) +
       32442;
-  }
-  if (
+  } else if (
     new Date("11/18/1969").getTime() <= selectedDate &&
     selectedDate < new Date("04/24/1970").getTime()
   ) {
@@ -1632,8 +1605,7 @@ function rundate() {
           (new Date("04/24/1970").getTime() -
             new Date("11/18/1969").getTime())) +
       33065;
-  }
-  if (
+  } else if (
     new Date("04/24/1970").getTime() <= selectedDate &&
     selectedDate < new Date("09/29/1970").getTime()
   ) {
@@ -1643,8 +1615,7 @@ function rundate() {
           (new Date("09/29/1970").getTime() -
             new Date("04/24/1970").getTime())) +
       33683;
-  }
-  if (
+  } else if (
     new Date("09/29/1970").getTime() <= selectedDate &&
     selectedDate < new Date("01/6/1971").getTime()
   ) {
@@ -1654,8 +1625,7 @@ function rundate() {
           (new Date("01/6/1971").getTime() -
             new Date("09/29/1970").getTime())) +
       34026;
-  }
-  if (
+  } else if (
     new Date("01/6/1971").getTime() <= selectedDate &&
     selectedDate < new Date("03/31/1971").getTime()
   ) {
@@ -1665,8 +1635,7 @@ function rundate() {
           (new Date("03/31/1971").getTime() -
             new Date("01/6/1971").getTime())) +
       34481;
-  }
-  if (
+  } else if (
     new Date("03/31/1971").getTime() <= selectedDate &&
     selectedDate < new Date("09/28/1971").getTime()
   ) {
@@ -1676,8 +1645,7 @@ function rundate() {
           (new Date("09/28/1971").getTime() -
             new Date("03/31/1971").getTime())) +
       34872;
-  }
-  if (
+  } else if (
     new Date("09/28/1971").getTime() <= selectedDate &&
     selectedDate < new Date("01/5/1972").getTime()
   ) {
@@ -1687,8 +1655,7 @@ function rundate() {
           (new Date("01/5/1972").getTime() -
             new Date("09/28/1971").getTime())) +
       35447;
-  }
-  if (
+  } else if (
     new Date("01/5/1972").getTime() <= selectedDate &&
     selectedDate < new Date("03/29/1972").getTime()
   ) {
@@ -1698,8 +1665,7 @@ function rundate() {
           (new Date("03/29/1972").getTime() -
             new Date("01/5/1972").getTime())) +
       35893;
-  }
-  if (
+  } else if (
     new Date("03/29/1972").getTime() <= selectedDate &&
     selectedDate < new Date("09/18/1972").getTime()
   ) {
@@ -1709,8 +1675,7 @@ function rundate() {
           (new Date("09/18/1972").getTime() -
             new Date("03/29/1972").getTime())) +
       36257;
-  }
-  if (
+  } else if (
     new Date("09/18/1972").getTime() <= selectedDate &&
     selectedDate < new Date("01/8/1973").getTime()
   ) {
@@ -1720,8 +1685,7 @@ function rundate() {
           (new Date("01/8/1973").getTime() -
             new Date("09/18/1972").getTime())) +
       36890;
-  }
-  if (
+  } else if (
     new Date("01/8/1973").getTime() <= selectedDate &&
     selectedDate < new Date("06/15/1973").getTime()
   ) {
@@ -1731,8 +1695,7 @@ function rundate() {
           (new Date("06/15/1973").getTime() -
             new Date("01/8/1973").getTime())) +
       37383;
-  }
-  if (
+  } else if (
     new Date("06/15/1973").getTime() <= selectedDate &&
     selectedDate < new Date("01/7/1974").getTime()
   ) {
@@ -1742,8 +1705,7 @@ function rundate() {
           (new Date("01/7/1974").getTime() -
             new Date("06/15/1973").getTime())) +
       38218;
-  }
-  if (
+  } else if (
     new Date("01/7/1974").getTime() <= selectedDate &&
     selectedDate < new Date("05/1/1974").getTime()
   ) {
@@ -1752,8 +1714,7 @@ function rundate() {
         ((selectedDate - new Date("01/7/1974").getTime()) /
           (new Date("05/1/1974").getTime() - new Date("01/7/1974").getTime())) +
       38840;
-  }
-  if (
+  } else if (
     new Date("05/1/1974").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/1974").getTime()
   ) {
@@ -1762,8 +1723,7 @@ function rundate() {
         ((selectedDate - new Date("05/1/1974").getTime()) /
           (new Date("11/1/1974").getTime() - new Date("05/1/1974").getTime())) +
       39511;
-  }
-  if (
+  } else if (
     new Date("11/1/1974").getTime() <= selectedDate &&
     selectedDate < new Date("01/6/1975").getTime()
   ) {
@@ -1772,8 +1732,7 @@ function rundate() {
         ((selectedDate - new Date("11/1/1974").getTime()) /
           (new Date("01/6/1975").getTime() - new Date("11/1/1974").getTime())) +
       40274;
-  }
-  if (
+  } else if (
     new Date("01/6/1975").getTime() <= selectedDate &&
     selectedDate < new Date("04/17/1975").getTime()
   ) {
@@ -1783,8 +1742,7 @@ function rundate() {
           (new Date("04/17/1975").getTime() -
             new Date("01/6/1975").getTime())) +
       40511;
-  }
-  if (
+  } else if (
     new Date("04/17/1975").getTime() <= selectedDate &&
     selectedDate < new Date("10/2/1975").getTime()
   ) {
@@ -1794,8 +1752,7 @@ function rundate() {
           (new Date("10/2/1975").getTime() -
             new Date("04/17/1975").getTime())) +
       41157;
-  }
-  if (
+  } else if (
     new Date("10/2/1975").getTime() <= selectedDate &&
     selectedDate < new Date("01/7/1976").getTime()
   ) {
@@ -1804,8 +1761,7 @@ function rundate() {
         ((selectedDate - new Date("10/2/1975").getTime()) /
           (new Date("01/7/1976").getTime() - new Date("10/2/1975").getTime())) +
       41802;
-  }
-  if (
+  } else if (
     new Date("01/7/1976").getTime() <= selectedDate &&
     selectedDate < new Date("04/5/1976").getTime()
   ) {
@@ -1814,8 +1770,7 @@ function rundate() {
         ((selectedDate - new Date("01/7/1976").getTime()) /
           (new Date("04/5/1976").getTime() - new Date("01/7/1976").getTime())) +
       42264;
-  }
-  if (
+  } else if (
     new Date("04/5/1976").getTime() <= selectedDate &&
     selectedDate < new Date("09/21/1976").getTime()
   ) {
@@ -1825,8 +1780,7 @@ function rundate() {
           (new Date("09/21/1976").getTime() -
             new Date("04/5/1976").getTime())) +
       42774;
-  }
-  if (
+  } else if (
     new Date("09/21/1976").getTime() <= selectedDate &&
     selectedDate < new Date("01/6/1977").getTime()
   ) {
@@ -1836,8 +1790,7 @@ function rundate() {
           (new Date("01/6/1977").getTime() -
             new Date("09/21/1976").getTime())) +
       43452;
-  }
-  if (
+  } else if (
     new Date("01/6/1977").getTime() <= selectedDate &&
     selectedDate < new Date("04/4/1977").getTime()
   ) {
@@ -1846,8 +1799,7 @@ function rundate() {
         ((selectedDate - new Date("01/6/1977").getTime()) /
           (new Date("04/4/1977").getTime() - new Date("01/6/1977").getTime())) +
       44123;
-  }
-  if (
+  } else if (
     new Date("04/4/1977").getTime() <= selectedDate &&
     selectedDate < new Date("09/20/1977").getTime()
   ) {
@@ -1857,8 +1809,7 @@ function rundate() {
           (new Date("09/20/1977").getTime() -
             new Date("04/4/1977").getTime())) +
       44690;
-  }
-  if (
+  } else if (
     new Date("09/20/1977").getTime() <= selectedDate &&
     selectedDate < new Date("01/9/1978").getTime()
   ) {
@@ -1868,8 +1819,7 @@ function rundate() {
           (new Date("01/9/1978").getTime() -
             new Date("09/20/1977").getTime())) +
       45475;
-  }
-  if (
+  } else if (
     new Date("01/9/1978").getTime() <= selectedDate &&
     selectedDate < new Date("04/3/1978").getTime()
   ) {
@@ -1878,8 +1828,7 @@ function rundate() {
         ((selectedDate - new Date("01/9/1978").getTime()) /
           (new Date("04/3/1978").getTime() - new Date("01/9/1978").getTime())) +
       46211;
-  }
-  if (
+  } else if (
     new Date("04/3/1978").getTime() <= selectedDate &&
     selectedDate < new Date("09/19/1978").getTime()
   ) {
@@ -1889,8 +1838,7 @@ function rundate() {
           (new Date("09/19/1978").getTime() -
             new Date("04/3/1978").getTime())) +
       46840;
-  }
-  if (
+  } else if (
     new Date("09/19/1978").getTime() <= selectedDate &&
     selectedDate < new Date("01/8/1979").getTime()
   ) {
@@ -1900,8 +1848,7 @@ function rundate() {
           (new Date("01/8/1979").getTime() -
             new Date("09/19/1978").getTime())) +
       47735;
-  }
-  if (
+  } else if (
     new Date("01/8/1979").getTime() <= selectedDate &&
     selectedDate < new Date("04/2/1979").getTime()
   ) {
@@ -1910,8 +1857,7 @@ function rundate() {
         ((selectedDate - new Date("01/8/1979").getTime()) /
           (new Date("04/2/1979").getTime() - new Date("01/8/1979").getTime())) +
       48528;
-  }
-  if (
+  } else if (
     new Date("04/2/1979").getTime() <= selectedDate &&
     selectedDate < new Date("09/18/1979").getTime()
   ) {
@@ -1921,8 +1867,7 @@ function rundate() {
           (new Date("09/18/1979").getTime() -
             new Date("04/2/1979").getTime())) +
       49174;
-  }
-  if (
+  } else if (
     new Date("09/18/1979").getTime() <= selectedDate &&
     selectedDate < new Date("01/7/1980").getTime()
   ) {
@@ -1932,8 +1877,7 @@ function rundate() {
           (new Date("01/7/1980").getTime() -
             new Date("09/18/1979").getTime())) +
       50080;
-  }
-  if (
+  } else if (
     new Date("01/7/1980").getTime() <= selectedDate &&
     selectedDate < new Date("03/31/1980").getTime()
   ) {
@@ -1943,8 +1887,7 @@ function rundate() {
           (new Date("03/31/1980").getTime() -
             new Date("01/7/1980").getTime())) +
       50866;
-  }
-  if (
+  } else if (
     new Date("03/31/1980").getTime() <= selectedDate &&
     selectedDate < new Date("09/23/1980").getTime()
   ) {
@@ -1954,8 +1897,7 @@ function rundate() {
           (new Date("09/23/1980").getTime() -
             new Date("03/31/1980").getTime())) +
       51465;
-  }
-  if (
+  } else if (
     new Date("09/23/1980").getTime() <= selectedDate &&
     selectedDate < new Date("01/12/1981").getTime()
   ) {
@@ -1965,8 +1907,7 @@ function rundate() {
           (new Date("01/12/1981").getTime() -
             new Date("09/23/1980").getTime())) +
       52376;
-  }
-  if (
+  } else if (
     new Date("01/12/1981").getTime() <= selectedDate &&
     selectedDate < new Date("04/6/1981").getTime()
   ) {
@@ -1976,8 +1917,7 @@ function rundate() {
           (new Date("04/6/1981").getTime() -
             new Date("01/12/1981").getTime())) +
       53156;
-  }
-  if (
+  } else if (
     new Date("04/6/1981").getTime() <= selectedDate &&
     selectedDate < new Date("09/22/1981").getTime()
   ) {
@@ -1987,8 +1927,7 @@ function rundate() {
           (new Date("09/22/1981").getTime() -
             new Date("04/6/1981").getTime())) +
       53815;
-  }
-  if (
+  } else if (
     new Date("09/22/1981").getTime() <= selectedDate &&
     selectedDate < new Date("01/11/1982").getTime()
   ) {
@@ -1998,8 +1937,7 @@ function rundate() {
           (new Date("01/11/1982").getTime() -
             new Date("09/22/1981").getTime())) +
       54725;
-  }
-  if (
+  } else if (
     new Date("01/11/1982").getTime() <= selectedDate &&
     selectedDate < new Date("04/5/1982").getTime()
   ) {
@@ -2009,8 +1947,7 @@ function rundate() {
           (new Date("04/5/1982").getTime() -
             new Date("01/11/1982").getTime())) +
       55533;
-  }
-  if (
+  } else if (
     new Date("04/5/1982").getTime() <= selectedDate &&
     selectedDate < new Date("06/28/1982").getTime()
   ) {
@@ -2020,8 +1957,7 @@ function rundate() {
           (new Date("06/28/1982").getTime() -
             new Date("04/5/1982").getTime())) +
       56159;
-  }
-  if (
+  } else if (
     new Date("06/28/1982").getTime() <= selectedDate &&
     selectedDate < new Date("09/28/1982").getTime()
   ) {
@@ -2031,8 +1967,7 @@ function rundate() {
           (new Date("09/28/1982").getTime() -
             new Date("06/28/1982").getTime())) +
       56888;
-  }
-  if (
+  } else if (
     new Date("09/28/1982").getTime() <= selectedDate &&
     selectedDate < new Date("01/10/1983").getTime()
   ) {
@@ -2042,8 +1977,7 @@ function rundate() {
           (new Date("01/10/1983").getTime() -
             new Date("09/28/1982").getTime())) +
       57040;
-  }
-  if (
+  } else if (
     new Date("01/10/1983").getTime() <= selectedDate &&
     selectedDate < new Date("04/4/1983").getTime()
   ) {
@@ -2053,8 +1987,7 @@ function rundate() {
           (new Date("04/4/1983").getTime() -
             new Date("01/10/1983").getTime())) +
       57995;
-  }
-  if (
+  } else if (
     new Date("04/4/1983").getTime() <= selectedDate &&
     selectedDate < new Date("06/27/1983").getTime()
   ) {
@@ -2064,8 +1997,7 @@ function rundate() {
           (new Date("06/27/1983").getTime() -
             new Date("04/4/1983").getTime())) +
       58672;
-  }
-  if (
+  } else if (
     new Date("06/27/1983").getTime() <= selectedDate &&
     selectedDate < new Date("09/27/1983").getTime()
   ) {
@@ -2075,8 +2007,7 @@ function rundate() {
           (new Date("09/27/1983").getTime() -
             new Date("06/27/1983").getTime())) +
       59409;
-  }
-  if (
+  } else if (
     new Date("09/27/1983").getTime() <= selectedDate &&
     selectedDate < new Date("12/27/1983").getTime()
   ) {
@@ -2086,8 +2017,7 @@ function rundate() {
           (new Date("12/27/1983").getTime() -
             new Date("09/27/1983").getTime())) +
       59559;
-  }
-  if (
+  } else if (
     new Date("12/27/1983").getTime() <= selectedDate &&
     selectedDate < new Date("04/2/1984").getTime()
   ) {
@@ -2097,8 +2027,7 @@ function rundate() {
           (new Date("04/2/1984").getTime() -
             new Date("12/27/1983").getTime())) +
       60450;
-  }
-  if (
+  } else if (
     new Date("04/2/1984").getTime() <= selectedDate &&
     selectedDate < new Date("06/21/1984").getTime()
   ) {
@@ -2108,8 +2037,7 @@ function rundate() {
           (new Date("06/21/1984").getTime() -
             new Date("04/2/1984").getTime())) +
       61148;
-  }
-  if (
+  } else if (
     new Date("06/21/1984").getTime() <= selectedDate &&
     selectedDate < new Date("09/25/1984").getTime()
   ) {
@@ -2119,8 +2047,7 @@ function rundate() {
           (new Date("09/25/1984").getTime() -
             new Date("06/21/1984").getTime())) +
       61963;
-  }
-  if (
+  } else if (
     new Date("09/25/1984").getTime() <= selectedDate &&
     selectedDate < new Date("01/7/1985").getTime()
   ) {
@@ -2130,8 +2057,7 @@ function rundate() {
           (new Date("01/7/1985").getTime() -
             new Date("09/25/1984").getTime())) +
       62212;
-  }
-  if (
+  } else if (
     new Date("01/7/1985").getTime() <= selectedDate &&
     selectedDate < new Date("04/1/1985").getTime()
   ) {
@@ -2140,8 +2066,7 @@ function rundate() {
         ((selectedDate - new Date("01/7/1985").getTime()) /
           (new Date("04/1/1985").getTime() - new Date("01/7/1985").getTime())) +
       63199;
-  }
-  if (
+  } else if (
     new Date("04/1/1985").getTime() <= selectedDate &&
     selectedDate < new Date("06/24/1985").getTime()
   ) {
@@ -2151,8 +2076,7 @@ function rundate() {
           (new Date("06/24/1985").getTime() -
             new Date("04/1/1985").getTime())) +
       63944;
-  }
-  if (
+  } else if (
     new Date("06/24/1985").getTime() <= selectedDate &&
     selectedDate < new Date("09/24/1985").getTime()
   ) {
@@ -2162,8 +2086,7 @@ function rundate() {
           (new Date("09/24/1985").getTime() -
             new Date("06/24/1985").getTime())) +
       64681;
-  }
-  if (
+  } else if (
     new Date("09/24/1985").getTime() <= selectedDate &&
     selectedDate < new Date("01/1/1986").getTime()
   ) {
@@ -2173,8 +2096,7 @@ function rundate() {
           (new Date("01/1/1986").getTime() -
             new Date("09/24/1985").getTime())) +
       64867;
-  }
-  if (
+  } else if (
     new Date("01/1/1986").getTime() <= selectedDate &&
     selectedDate < new Date("04/7/1986").getTime()
   ) {
@@ -2183,8 +2105,7 @@ function rundate() {
         ((selectedDate - new Date("01/1/1986").getTime()) /
           (new Date("04/7/1986").getTime() - new Date("01/1/1986").getTime())) +
       65718;
-  }
-  if (
+  } else if (
     new Date("04/7/1986").getTime() <= selectedDate &&
     selectedDate < new Date("04/23/1986").getTime()
   ) {
@@ -2194,8 +2115,7 @@ function rundate() {
           (new Date("04/23/1986").getTime() -
             new Date("04/7/1986").getTime())) +
       66462;
-  }
-  if (
+  } else if (
     new Date("04/23/1986").getTime() <= selectedDate &&
     selectedDate < new Date("06/30/1986").getTime()
   ) {
@@ -2205,8 +2125,7 @@ function rundate() {
           (new Date("06/30/1986").getTime() -
             new Date("04/23/1986").getTime())) +
       66695;
-  }
-  if (
+  } else if (
     new Date("06/30/1986").getTime() <= selectedDate &&
     selectedDate < new Date("09/23/1986").getTime()
   ) {
@@ -2216,8 +2135,7 @@ function rundate() {
           (new Date("09/23/1986").getTime() -
             new Date("06/30/1986").getTime())) +
       67301;
-  }
-  if (
+  } else if (
     new Date("09/23/1986").getTime() <= selectedDate &&
     selectedDate < new Date("01/5/1987").getTime()
   ) {
@@ -2227,8 +2145,7 @@ function rundate() {
           (new Date("01/5/1987").getTime() -
             new Date("09/23/1986").getTime())) +
       67526;
-  }
-  if (
+  } else if (
     new Date("01/5/1987").getTime() <= selectedDate &&
     selectedDate < new Date("03/30/1987").getTime()
   ) {
@@ -2238,8 +2155,7 @@ function rundate() {
           (new Date("03/30/1987").getTime() -
             new Date("01/5/1987").getTime())) +
       68506;
-  }
-  if (
+  } else if (
     new Date("03/30/1987").getTime() <= selectedDate &&
     selectedDate < new Date("06/22/1987").getTime()
   ) {
@@ -2249,8 +2165,7 @@ function rundate() {
           (new Date("06/22/1987").getTime() -
             new Date("03/30/1987").getTime())) +
       69202;
-  }
-  if (
+  } else if (
     new Date("06/22/1987").getTime() <= selectedDate &&
     selectedDate < new Date("09/22/1987").getTime()
   ) {
@@ -2260,8 +2175,7 @@ function rundate() {
           (new Date("09/22/1987").getTime() -
             new Date("06/22/1987").getTime())) +
       70050;
-  }
-  if (
+  } else if (
     new Date("09/22/1987").getTime() <= selectedDate &&
     selectedDate < new Date("11/3/1987").getTime()
   ) {
@@ -2271,8 +2185,7 @@ function rundate() {
           (new Date("11/3/1987").getTime() -
             new Date("09/22/1987").getTime())) +
       70280;
-  }
-  if (
+  } else if (
     new Date("11/3/1987").getTime() <= selectedDate &&
     selectedDate < new Date("01/4/1988").getTime()
   ) {
@@ -2281,8 +2194,7 @@ function rundate() {
         ((selectedDate - new Date("11/3/1987").getTime()) /
           (new Date("01/4/1988").getTime() - new Date("11/3/1987").getTime())) +
       70894;
-  }
-  if (
+  } else if (
     new Date("01/4/1988").getTime() <= selectedDate &&
     selectedDate < new Date("03/26/1988").getTime()
   ) {
@@ -2292,8 +2204,7 @@ function rundate() {
           (new Date("03/26/1988").getTime() -
             new Date("01/4/1988").getTime())) +
       71295;
-  }
-  if (
+  } else if (
     new Date("03/26/1988").getTime() <= selectedDate &&
     selectedDate < new Date("05/2/1988").getTime()
   ) {
@@ -2303,8 +2214,7 @@ function rundate() {
           (new Date("05/2/1988").getTime() -
             new Date("03/26/1988").getTime())) +
       72139;
-  }
-  if (
+  } else if (
     new Date("05/2/1988").getTime() <= selectedDate &&
     selectedDate < new Date("06/27/1988").getTime()
   ) {
@@ -2314,8 +2224,7 @@ function rundate() {
           (new Date("06/27/1988").getTime() -
             new Date("05/2/1988").getTime())) +
       72642;
-  }
-  if (
+  } else if (
     new Date("06/27/1988").getTime() <= selectedDate &&
     selectedDate < new Date("09/26/1988").getTime()
   ) {
@@ -2325,8 +2234,7 @@ function rundate() {
           (new Date("09/26/1988").getTime() -
             new Date("06/27/1988").getTime())) +
       73130;
-  }
-  if (
+  } else if (
     new Date("09/26/1988").getTime() <= selectedDate &&
     selectedDate < new Date("10/24/1988").getTime()
   ) {
@@ -2336,8 +2244,7 @@ function rundate() {
           (new Date("10/24/1988").getTime() -
             new Date("09/26/1988").getTime())) +
       73409;
-  }
-  if (
+  } else if (
     new Date("10/24/1988").getTime() <= selectedDate &&
     selectedDate < new Date("01/9/1989").getTime()
   ) {
@@ -2347,8 +2254,7 @@ function rundate() {
           (new Date("01/9/1989").getTime() -
             new Date("10/24/1988").getTime())) +
       73852;
-  }
-  if (
+  } else if (
     new Date("01/9/1989").getTime() <= selectedDate &&
     selectedDate < new Date("02/9/1989").getTime()
   ) {
@@ -2357,8 +2263,7 @@ function rundate() {
         ((selectedDate - new Date("01/9/1989").getTime()) /
           (new Date("02/9/1989").getTime() - new Date("01/9/1989").getTime())) +
       74414;
-  }
-  if (
+  } else if (
     new Date("02/9/1989").getTime() <= selectedDate &&
     selectedDate < new Date("04/3/1989").getTime()
   ) {
@@ -2367,8 +2272,7 @@ function rundate() {
         ((selectedDate - new Date("02/9/1989").getTime()) /
           (new Date("04/3/1989").getTime() - new Date("02/9/1989").getTime())) +
       74847;
-  }
-  if (
+  } else if (
     new Date("04/3/1989").getTime() <= selectedDate &&
     selectedDate < new Date("04/18/1989").getTime()
   ) {
@@ -2378,8 +2282,7 @@ function rundate() {
           (new Date("04/18/1989").getTime() -
             new Date("04/3/1989").getTime())) +
       75337;
-  }
-  if (
+  } else if (
     new Date("04/18/1989").getTime() <= selectedDate &&
     selectedDate < new Date("06/26/1989").getTime()
   ) {
@@ -2389,8 +2292,7 @@ function rundate() {
           (new Date("06/26/1989").getTime() -
             new Date("04/18/1989").getTime())) +
       75600;
-  }
-  if (
+  } else if (
     new Date("06/26/1989").getTime() <= selectedDate &&
     selectedDate < new Date("09/25/1989").getTime()
   ) {
@@ -2400,8 +2302,7 @@ function rundate() {
           (new Date("09/25/1989").getTime() -
             new Date("06/26/1989").getTime())) +
       76350;
-  }
-  if (
+  } else if (
     new Date("09/25/1989").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/1989").getTime()
   ) {
@@ -2411,8 +2312,7 @@ function rundate() {
           (new Date("11/1/1989").getTime() -
             new Date("09/25/1989").getTime())) +
       76567;
-  }
-  if (
+  } else if (
     new Date("11/1/1989").getTime() <= selectedDate &&
     selectedDate < new Date("01/8/1990").getTime()
   ) {
@@ -2421,8 +2321,7 @@ function rundate() {
         ((selectedDate - new Date("11/1/1989").getTime()) /
           (new Date("01/8/1990").getTime() - new Date("11/1/1989").getTime())) +
       77180;
-  }
-  if (
+  } else if (
     new Date("01/8/1990").getTime() <= selectedDate &&
     selectedDate < new Date("02/15/1990").getTime()
   ) {
@@ -2432,8 +2331,7 @@ function rundate() {
           (new Date("02/15/1990").getTime() -
             new Date("01/8/1990").getTime())) +
       77673;
-  }
-  if (
+  } else if (
     new Date("02/15/1990").getTime() <= selectedDate &&
     selectedDate < new Date("04/2/1990").getTime()
   ) {
@@ -2443,8 +2341,7 @@ function rundate() {
           (new Date("04/2/1990").getTime() -
             new Date("02/15/1990").getTime())) +
       78235;
-  }
-  if (
+  } else if (
     new Date("04/2/1990").getTime() <= selectedDate &&
     selectedDate < new Date("04/30/1990").getTime()
   ) {
@@ -2454,8 +2351,7 @@ function rundate() {
           (new Date("04/30/1990").getTime() -
             new Date("04/2/1990").getTime())) +
       78624;
-  }
-  if (
+  } else if (
     new Date("04/30/1990").getTime() <= selectedDate &&
     selectedDate < new Date("06/25/1990").getTime()
   ) {
@@ -2465,8 +2361,7 @@ function rundate() {
           (new Date("06/25/1990").getTime() -
             new Date("04/30/1990").getTime())) +
       79137;
-  }
-  if (
+  } else if (
     new Date("06/25/1990").getTime() <= selectedDate &&
     selectedDate < new Date("09/24/1990").getTime()
   ) {
@@ -2476,8 +2371,7 @@ function rundate() {
           (new Date("09/24/1990").getTime() -
             new Date("06/25/1990").getTime())) +
       79702;
-  }
-  if (
+  } else if (
     new Date("09/24/1990").getTime() <= selectedDate &&
     selectedDate < new Date("10/29/1990").getTime()
   ) {
@@ -2487,8 +2381,7 @@ function rundate() {
           (new Date("10/29/1990").getTime() -
             new Date("09/24/1990").getTime())) +
       79929;
-  }
-  if (
+  } else if (
     new Date("10/29/1990").getTime() <= selectedDate &&
     selectedDate < new Date("01/7/1991").getTime()
   ) {
@@ -2498,8 +2391,7 @@ function rundate() {
           (new Date("01/7/1991").getTime() -
             new Date("10/29/1990").getTime())) +
       80561;
-  }
-  if (
+  } else if (
     new Date("01/7/1991").getTime() <= selectedDate &&
     selectedDate < new Date("04/1/1991").getTime()
   ) {
@@ -2508,8 +2400,7 @@ function rundate() {
         ((selectedDate - new Date("01/7/1991").getTime()) /
           (new Date("04/1/1991").getTime() - new Date("01/7/1991").getTime())) +
       81082;
-  }
-  if (
+  } else if (
     new Date("04/1/1991").getTime() <= selectedDate &&
     selectedDate < new Date("05/9/1991").getTime()
   ) {
@@ -2518,8 +2409,7 @@ function rundate() {
         ((selectedDate - new Date("04/1/1991").getTime()) /
           (new Date("05/9/1991").getTime() - new Date("04/1/1991").getTime())) +
       81981;
-  }
-  if (
+  } else if (
     new Date("05/9/1991").getTime() <= selectedDate &&
     selectedDate < new Date("06/24/1991").getTime()
   ) {
@@ -2529,8 +2419,7 @@ function rundate() {
           (new Date("06/24/1991").getTime() -
             new Date("05/9/1991").getTime())) +
       82522;
-  }
-  if (
+  } else if (
     new Date("06/24/1991").getTime() <= selectedDate &&
     selectedDate < new Date("09/23/1991").getTime()
   ) {
@@ -2540,8 +2429,7 @@ function rundate() {
           (new Date("09/23/1991").getTime() -
             new Date("06/24/1991").getTime())) +
       82959;
-  }
-  if (
+  } else if (
     new Date("09/23/1991").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/1991").getTime()
   ) {
@@ -2551,8 +2439,7 @@ function rundate() {
           (new Date("11/1/1991").getTime() -
             new Date("09/23/1991").getTime())) +
       83166;
-  }
-  if (
+  } else if (
     new Date("11/1/1991").getTime() <= selectedDate &&
     selectedDate < new Date("01/6/1992").getTime()
   ) {
@@ -2561,8 +2448,7 @@ function rundate() {
         ((selectedDate - new Date("11/1/1991").getTime()) /
           (new Date("01/6/1992").getTime() - new Date("11/1/1991").getTime())) +
       83859;
-  }
-  if (
+  } else if (
     new Date("01/6/1992").getTime() <= selectedDate &&
     selectedDate < new Date("02/6/1992").getTime()
   ) {
@@ -2571,8 +2457,7 @@ function rundate() {
         ((selectedDate - new Date("01/6/1992").getTime()) /
           (new Date("02/6/1992").getTime() - new Date("01/6/1992").getTime())) +
       84266;
-  }
-  if (
+  } else if (
     new Date("02/6/1992").getTime() <= selectedDate &&
     selectedDate < new Date("03/30/1992").getTime()
   ) {
@@ -2582,8 +2467,7 @@ function rundate() {
           (new Date("03/30/1992").getTime() -
             new Date("02/6/1992").getTime())) +
       84678;
-  }
-  if (
+  } else if (
     new Date("03/30/1992").getTime() <= selectedDate &&
     selectedDate < new Date("05/12/1992").getTime()
   ) {
@@ -2593,8 +2477,7 @@ function rundate() {
           (new Date("05/12/1992").getTime() -
             new Date("03/30/1992").getTime())) +
       85131;
-  }
-  if (
+  } else if (
     new Date("05/12/1992").getTime() <= selectedDate &&
     selectedDate < new Date("06/22/1992").getTime()
   ) {
@@ -2604,8 +2487,7 @@ function rundate() {
           (new Date("06/22/1992").getTime() -
             new Date("05/12/1992").getTime())) +
       85761;
-  }
-  if (
+  } else if (
     new Date("06/22/1992").getTime() <= selectedDate &&
     selectedDate < new Date("09/21/1992").getTime()
   ) {
@@ -2615,8 +2497,7 @@ function rundate() {
           (new Date("09/21/1992").getTime() -
             new Date("06/22/1992").getTime())) +
       86146;
-  }
-  if (
+  } else if (
     new Date("09/21/1992").getTime() <= selectedDate &&
     selectedDate < new Date("11/2/1992").getTime()
   ) {
@@ -2626,8 +2507,7 @@ function rundate() {
           (new Date("11/2/1992").getTime() -
             new Date("09/21/1992").getTime())) +
       86305;
-  }
-  if (
+  } else if (
     new Date("11/2/1992").getTime() <= selectedDate &&
     selectedDate < new Date("01/11/1993").getTime()
   ) {
@@ -2637,8 +2517,7 @@ function rundate() {
           (new Date("01/11/1993").getTime() -
             new Date("11/2/1992").getTime())) +
       86927;
-  }
-  if (
+  } else if (
     new Date("01/11/1993").getTime() <= selectedDate &&
     selectedDate < new Date("04/5/1993").getTime()
   ) {
@@ -2648,8 +2527,7 @@ function rundate() {
           (new Date("04/5/1993").getTime() -
             new Date("01/11/1993").getTime())) +
       87316;
-  }
-  if (
+  } else if (
     new Date("04/5/1993").getTime() <= selectedDate &&
     selectedDate < new Date("05/5/1993").getTime()
   ) {
@@ -2658,8 +2536,7 @@ function rundate() {
         ((selectedDate - new Date("04/5/1993").getTime()) /
           (new Date("05/5/1993").getTime() - new Date("04/5/1993").getTime())) +
       88065;
-  }
-  if (
+  } else if (
     new Date("05/5/1993").getTime() <= selectedDate &&
     selectedDate < new Date("06/28/1993").getTime()
   ) {
@@ -2669,8 +2546,7 @@ function rundate() {
           (new Date("06/28/1993").getTime() -
             new Date("05/5/1993").getTime())) +
       88494;
-  }
-  if (
+  } else if (
     new Date("06/28/1993").getTime() <= selectedDate &&
     selectedDate < new Date("09/27/1993").getTime()
   ) {
@@ -2680,8 +2556,7 @@ function rundate() {
           (new Date("09/27/1993").getTime() -
             new Date("06/28/1993").getTime())) +
       88967;
-  }
-  if (
+  } else if (
     new Date("09/27/1993").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/1993").getTime()
   ) {
@@ -2691,8 +2566,7 @@ function rundate() {
           (new Date("11/1/1993").getTime() -
             new Date("09/27/1993").getTime())) +
       89140;
-  }
-  if (
+  } else if (
     new Date("11/1/1993").getTime() <= selectedDate &&
     selectedDate < new Date("01/10/1994").getTime()
   ) {
@@ -2702,8 +2576,7 @@ function rundate() {
           (new Date("01/10/1994").getTime() -
             new Date("11/1/1993").getTime())) +
       89634;
-  }
-  if (
+  } else if (
     new Date("01/10/1994").getTime() <= selectedDate &&
     selectedDate < new Date("04/4/1994").getTime()
   ) {
@@ -2713,8 +2586,7 @@ function rundate() {
           (new Date("04/4/1994").getTime() -
             new Date("01/10/1994").getTime())) +
       90100;
-  }
-  if (
+  } else if (
     new Date("04/4/1994").getTime() <= selectedDate &&
     selectedDate < new Date("05/5/1994").getTime()
   ) {
@@ -2723,8 +2595,7 @@ function rundate() {
         ((selectedDate - new Date("04/4/1994").getTime()) /
           (new Date("05/5/1994").getTime() - new Date("04/4/1994").getTime())) +
       90880;
-  }
-  if (
+  } else if (
     new Date("05/5/1994").getTime() <= selectedDate &&
     selectedDate < new Date("06/27/1994").getTime()
   ) {
@@ -2734,8 +2605,7 @@ function rundate() {
           (new Date("06/27/1994").getTime() -
             new Date("05/5/1994").getTime())) +
       91311;
-  }
-  if (
+  } else if (
     new Date("06/27/1994").getTime() <= selectedDate &&
     selectedDate < new Date("09/26/1994").getTime()
   ) {
@@ -2745,8 +2615,7 @@ function rundate() {
           (new Date("09/26/1994").getTime() -
             new Date("06/27/1994").getTime())) +
       91732;
-  }
-  if (
+  } else if (
     new Date("09/26/1994").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/1994").getTime()
   ) {
@@ -2756,8 +2625,7 @@ function rundate() {
           (new Date("11/1/1994").getTime() -
             new Date("09/26/1994").getTime())) +
       91909;
-  }
-  if (
+  } else if (
     new Date("11/1/1994").getTime() <= selectedDate &&
     selectedDate < new Date("01/9/1995").getTime()
   ) {
@@ -2766,8 +2634,7 @@ function rundate() {
         ((selectedDate - new Date("11/1/1994").getTime()) /
           (new Date("01/9/1995").getTime() - new Date("11/1/1994").getTime())) +
       92479;
-  }
-  if (
+  } else if (
     new Date("01/9/1995").getTime() <= selectedDate &&
     selectedDate < new Date("02/13/1995").getTime()
   ) {
@@ -2777,8 +2644,7 @@ function rundate() {
           (new Date("02/13/1995").getTime() -
             new Date("01/9/1995").getTime())) +
       92906;
-  }
-  if (
+  } else if (
     new Date("02/13/1995").getTime() <= selectedDate &&
     selectedDate < new Date("04/3/1995").getTime()
   ) {
@@ -2788,8 +2654,7 @@ function rundate() {
           (new Date("04/3/1995").getTime() -
             new Date("02/13/1995").getTime())) +
       93345;
-  }
-  if (
+  } else if (
     new Date("04/3/1995").getTime() <= selectedDate &&
     selectedDate < new Date("05/22/1995").getTime()
   ) {
@@ -2799,8 +2664,7 @@ function rundate() {
           (new Date("05/22/1995").getTime() -
             new Date("04/3/1995").getTime())) +
       93716;
-  }
-  if (
+  } else if (
     new Date("05/22/1995").getTime() <= selectedDate &&
     selectedDate < new Date("06/26/1995").getTime()
   ) {
@@ -2810,8 +2674,7 @@ function rundate() {
           (new Date("06/26/1995").getTime() -
             new Date("05/22/1995").getTime())) +
       94387;
-  }
-  if (
+  } else if (
     new Date("06/26/1995").getTime() <= selectedDate &&
     selectedDate < new Date("09/25/1995").getTime()
   ) {
@@ -2821,8 +2684,7 @@ function rundate() {
           (new Date("09/25/1995").getTime() -
             new Date("06/26/1995").getTime())) +
       94630;
-  }
-  if (
+  } else if (
     new Date("09/25/1995").getTime() <= selectedDate &&
     selectedDate < new Date("11/10/1995").getTime()
   ) {
@@ -2832,8 +2694,7 @@ function rundate() {
           (new Date("11/10/1995").getTime() -
             new Date("09/25/1995").getTime())) +
       94839;
-  }
-  if (
+  } else if (
     new Date("11/10/1995").getTime() <= selectedDate &&
     selectedDate < new Date("01/8/1996").getTime()
   ) {
@@ -2843,8 +2704,7 @@ function rundate() {
           (new Date("01/8/1996").getTime() -
             new Date("11/10/1995").getTime())) +
       95532;
-  }
-  if (
+  } else if (
     new Date("01/8/1996").getTime() <= selectedDate &&
     selectedDate < new Date("02/1/1996").getTime()
   ) {
@@ -2853,8 +2713,7 @@ function rundate() {
         ((selectedDate - new Date("01/8/1996").getTime()) /
           (new Date("02/1/1996").getTime() - new Date("01/8/1996").getTime())) +
       95834;
-  }
-  if (
+  } else if (
     new Date("02/1/1996").getTime() <= selectedDate &&
     selectedDate < new Date("04/1/1996").getTime()
   ) {
@@ -2863,8 +2722,7 @@ function rundate() {
         ((selectedDate - new Date("02/1/1996").getTime()) /
           (new Date("04/1/1996").getTime() - new Date("02/1/1996").getTime())) +
       96133;
-  }
-  if (
+  } else if (
     new Date("04/1/1996").getTime() <= selectedDate &&
     selectedDate < new Date("06/24/1996").getTime()
   ) {
@@ -2874,8 +2732,7 @@ function rundate() {
           (new Date("06/24/1996").getTime() -
             new Date("04/1/1996").getTime())) +
       96654;
-  }
-  if (
+  } else if (
     new Date("06/24/1996").getTime() <= selectedDate &&
     selectedDate < new Date("09/23/1996").getTime()
   ) {
@@ -2885,8 +2742,7 @@ function rundate() {
           (new Date("09/23/1996").getTime() -
             new Date("06/24/1996").getTime())) +
       97579;
-  }
-  if (
+  } else if (
     new Date("09/23/1996").getTime() <= selectedDate &&
     selectedDate < new Date("01/6/1997").getTime()
   ) {
@@ -2896,8 +2752,7 @@ function rundate() {
           (new Date("01/6/1997").getTime() -
             new Date("09/23/1996").getTime())) +
       97756;
-  }
-  if (
+  } else if (
     new Date("01/6/1997").getTime() <= selectedDate &&
     selectedDate < new Date("03/31/1997").getTime()
   ) {
@@ -2907,8 +2762,7 @@ function rundate() {
           (new Date("03/31/1997").getTime() -
             new Date("01/6/1997").getTime())) +
       98828;
-  }
-  if (
+  } else if (
     new Date("03/31/1997").getTime() <= selectedDate &&
     selectedDate < new Date("06/30/1997").getTime()
   ) {
@@ -2918,8 +2772,7 @@ function rundate() {
           (new Date("06/30/1997").getTime() -
             new Date("03/31/1997").getTime())) +
       99649;
-  }
-  if (
+  } else if (
     new Date("06/30/1997").getTime() <= selectedDate &&
     selectedDate < new Date("09/22/1997").getTime()
   ) {
@@ -2929,8 +2782,7 @@ function rundate() {
           (new Date("09/22/1997").getTime() -
             new Date("06/30/1997").getTime())) +
       100724;
-  }
-  if (
+  } else if (
     new Date("09/22/1997").getTime() <= selectedDate &&
     selectedDate < new Date("10/21/1997").getTime()
   ) {
@@ -2940,8 +2792,7 @@ function rundate() {
           (new Date("10/21/1997").getTime() -
             new Date("09/22/1997").getTime())) +
       100919;
-  }
-  if (
+  } else if (
     new Date("10/21/1997").getTime() <= selectedDate &&
     selectedDate < new Date("01/12/1998").getTime()
   ) {
@@ -2951,8 +2802,7 @@ function rundate() {
           (new Date("01/12/1998").getTime() -
             new Date("10/21/1997").getTime())) +
       101500;
-  }
-  if (
+  } else if (
     new Date("01/12/1998").getTime() <= selectedDate &&
     selectedDate < new Date("02/18/1998").getTime()
   ) {
@@ -2962,8 +2812,7 @@ function rundate() {
           (new Date("02/18/1998").getTime() -
             new Date("01/12/1998").getTime())) +
       102158;
-  }
-  if (
+  } else if (
     new Date("02/18/1998").getTime() <= selectedDate &&
     selectedDate < new Date("04/6/1998").getTime()
   ) {
@@ -2973,8 +2822,7 @@ function rundate() {
           (new Date("04/6/1998").getTime() -
             new Date("02/18/1998").getTime())) +
       102674;
-  }
-  if (
+  } else if (
     new Date("04/6/1998").getTime() <= selectedDate &&
     selectedDate < new Date("06/29/1998").getTime()
   ) {
@@ -2984,8 +2832,7 @@ function rundate() {
           (new Date("06/29/1998").getTime() -
             new Date("04/6/1998").getTime())) +
       103106;
-  }
-  if (
+  } else if (
     new Date("06/29/1998").getTime() <= selectedDate &&
     selectedDate < new Date("09/28/1998").getTime()
   ) {
@@ -2995,8 +2842,7 @@ function rundate() {
           (new Date("09/28/1998").getTime() -
             new Date("06/29/1998").getTime())) +
       104123;
-  }
-  if (
+  } else if (
     new Date("09/28/1998").getTime() <= selectedDate &&
     selectedDate < new Date("01/11/1999").getTime()
   ) {
@@ -3006,8 +2852,7 @@ function rundate() {
           (new Date("01/11/1999").getTime() -
             new Date("09/28/1998").getTime())) +
       104290;
-  }
-  if (
+  } else if (
     new Date("01/11/1999").getTime() <= selectedDate &&
     selectedDate < new Date("04/5/1999").getTime()
   ) {
@@ -3017,8 +2862,7 @@ function rundate() {
           (new Date("04/5/1999").getTime() -
             new Date("01/11/1999").getTime())) +
       105344;
-  }
-  if (
+  } else if (
     new Date("04/5/1999").getTime() <= selectedDate &&
     selectedDate < new Date("06/28/1999").getTime()
   ) {
@@ -3028,8 +2872,7 @@ function rundate() {
           (new Date("06/28/1999").getTime() -
             new Date("04/5/1999").getTime())) +
       106113;
-  }
-  if (
+  } else if (
     new Date("06/28/1999").getTime() <= selectedDate &&
     selectedDate < new Date("09/27/1999").getTime()
   ) {
@@ -3039,8 +2882,7 @@ function rundate() {
           (new Date("09/27/1999").getTime() -
             new Date("06/28/1999").getTime())) +
       107006;
-  }
-  if (
+  } else if (
     new Date("09/27/1999").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/1999").getTime()
   ) {
@@ -3050,8 +2892,7 @@ function rundate() {
           (new Date("11/1/1999").getTime() -
             new Date("09/27/1999").getTime())) +
       107167;
-  }
-  if (
+  } else if (
     new Date("11/1/1999").getTime() <= selectedDate &&
     selectedDate < new Date("01/10/2000").getTime()
   ) {
@@ -3061,8 +2902,7 @@ function rundate() {
           (new Date("01/10/2000").getTime() -
             new Date("11/1/1999").getTime())) +
       107805;
-  }
-  if (
+  } else if (
     new Date("01/10/2000").getTime() <= selectedDate &&
     selectedDate < new Date("04/3/2000").getTime()
   ) {
@@ -3072,8 +2912,7 @@ function rundate() {
           (new Date("04/3/2000").getTime() -
             new Date("01/10/2000").getTime())) +
       108315;
-  }
-  if (
+  } else if (
     new Date("04/3/2000").getTime() <= selectedDate &&
     selectedDate < new Date("06/30/2000").getTime()
   ) {
@@ -3083,8 +2922,7 @@ function rundate() {
           (new Date("06/30/2000").getTime() -
             new Date("04/3/2000").getTime())) +
       109183;
-  }
-  if (
+  } else if (
     new Date("06/30/2000").getTime() <= selectedDate &&
     selectedDate < new Date("09/25/2000").getTime()
   ) {
@@ -3094,8 +2932,7 @@ function rundate() {
           (new Date("09/25/2000").getTime() -
             new Date("06/30/2000").getTime())) +
       110175;
-  }
-  if (
+  } else if (
     new Date("09/25/2000").getTime() <= selectedDate &&
     selectedDate < new Date("01/8/2001").getTime()
   ) {
@@ -3105,8 +2942,7 @@ function rundate() {
           (new Date("01/8/2001").getTime() -
             new Date("09/25/2000").getTime())) +
       110370;
-  }
-  if (
+  } else if (
     new Date("01/8/2001").getTime() <= selectedDate &&
     selectedDate < new Date("04/2/2001").getTime()
   ) {
@@ -3115,8 +2951,7 @@ function rundate() {
         ((selectedDate - new Date("01/8/2001").getTime()) /
           (new Date("04/2/2001").getTime() - new Date("01/8/2001").getTime())) +
       110891;
-  }
-  if (
+  } else if (
     new Date("04/2/2001").getTime() <= selectedDate &&
     selectedDate < new Date("06/25/2001").getTime()
   ) {
@@ -3126,8 +2961,7 @@ function rundate() {
           (new Date("06/25/2001").getTime() -
             new Date("04/2/2001").getTime())) +
       111689;
-  }
-  if (
+  } else if (
     new Date("06/25/2001").getTime() <= selectedDate &&
     selectedDate < new Date("09/23/2001").getTime()
   ) {
@@ -3137,8 +2971,7 @@ function rundate() {
           (new Date("09/23/2001").getTime() -
             new Date("06/25/2001").getTime())) +
       112565;
-  }
-  if (
+  } else if (
     new Date("09/23/2001").getTime() <= selectedDate &&
     selectedDate < new Date("11/1/2001").getTime()
   ) {
@@ -3148,8 +2981,7 @@ function rundate() {
           (new Date("11/1/2001").getTime() -
             new Date("09/23/2001").getTime())) +
       112748;
-  }
-  if (
+  } else if (
     new Date("11/1/2001").getTime() <= selectedDate &&
     selectedDate < new Date("01/7/2002").getTime()
   ) {
@@ -3158,8 +2990,7 @@ function rundate() {
         ((selectedDate - new Date("11/1/2001").getTime()) /
           (new Date("01/7/2002").getTime() - new Date("11/1/2001").getTime())) +
       113305;
-  }
-  if (
+  } else if (
     new Date("01/7/2002").getTime() <= selectedDate &&
     selectedDate < new Date("04/1/2002").getTime()
   ) {
@@ -3168,8 +2999,7 @@ function rundate() {
         ((selectedDate - new Date("01/7/2002").getTime()) /
           (new Date("04/1/2002").getTime() - new Date("01/7/2002").getTime())) +
       113691;
-  }
-  if (
+  } else if (
     new Date("04/1/2002").getTime() <= selectedDate &&
     selectedDate < new Date("05/1/2002").getTime()
   ) {
@@ -3178,8 +3008,7 @@ function rundate() {
         ((selectedDate - new Date("04/1/2002").getTime()) /
           (new Date("05/1/2002").getTime() - new Date("04/1/2002").getTime())) +
       114431;
-  }
-  if (
+  } else if (
     new Date("05/1/2002").getTime() <= selectedDate &&
     selectedDate < new Date("06/11/2002").getTime()
   ) {
@@ -3189,8 +3018,7 @@ function rundate() {
           (new Date("06/11/2002").getTime() -
             new Date("05/1/2002").getTime())) +
       114801;
-  }
-  if (
+  } else if (
     new Date("06/11/2002").getTime() <= selectedDate &&
     selectedDate < new Date("09/12/2002").getTime()
   ) {
@@ -3200,8 +3028,7 @@ function rundate() {
           (new Date("09/12/2002").getTime() -
             new Date("06/11/2002").getTime())) +
       115404;
-  }
-  if (
+  } else if (
     new Date("09/12/2002").getTime() <= selectedDate &&
     selectedDate < new Date("10/21/2002").getTime()
   ) {
@@ -3211,8 +3038,7 @@ function rundate() {
           (new Date("10/21/2002").getTime() -
             new Date("09/12/2002").getTime())) +
       115611;
-  }
-  if (
+  } else if (
     new Date("10/21/2002").getTime() <= selectedDate &&
     selectedDate < new Date("01/1/2003").getTime()
   ) {
@@ -3222,134 +3048,11 @@ function rundate() {
           (new Date("01/1/2003").getTime() -
             new Date("10/21/2002").getTime())) +
       116153;
+  } else if (selectedYearNumber >= 2003 && selectedYearNumber <= 2023) {
+    let offset = selectedYearNumber - 2003;
+    datebasedid = 116753 + offset;
   }
-  if (
-    new Date("01/1/2003").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2004").getTime()
-  ) {
-    datebasedid = 116753;
-  }
-  if (
-    new Date("01/1/2004").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2005").getTime()
-  ) {
-    datebasedid = 116754;
-  }
-  if (
-    new Date("01/1/2005").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2006").getTime()
-  ) {
-    datebasedid = 116755;
-  }
-  if (
-    new Date("01/1/2006").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2007").getTime()
-  ) {
-    datebasedid = 116756;
-  }
-  if (
-    new Date("01/1/2007").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2008").getTime()
-  ) {
-    datebasedid = 116757;
-  }
-  if (
-    new Date("01/1/2008").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2009").getTime()
-  ) {
-    datebasedid = 116758;
-  }
-  if (
-    new Date("01/1/2009").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2010").getTime()
-  ) {
-    datebasedid = 116759;
-  }
-  if (
-    new Date("01/1/2010").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2011").getTime()
-  ) {
-    datebasedid = 116760;
-  }
-  if (
-    new Date("01/1/2011").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2012").getTime()
-  ) {
-    datebasedid = 116761;
-  }
-  if (
-    new Date("01/1/2012").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2013").getTime()
-  ) {
-    datebasedid = 116762;
-  }
-  if (
-    new Date("01/1/2013").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2014").getTime()
-  ) {
-    datebasedid = 116763;
-  }
-  if (
-    new Date("01/1/2014").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2015").getTime()
-  ) {
-    datebasedid = 116764;
-  }
-  if (
-    new Date("01/1/2015").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2016").getTime()
-  ) {
-    datebasedid = 116765;
-  }
-  if (
-    new Date("01/1/2016").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2017").getTime()
-  ) {
-    datebasedid = 116766;
-  }
-  if (
-    new Date("01/1/2017").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2018").getTime()
-  ) {
-    datebasedid = 116767;
-  }
-  if (
-    new Date("01/1/2018").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2019").getTime()
-  ) {
-    datebasedid = 116768;
-  }
-  if (
-    new Date("01/1/2019").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2020").getTime()
-  ) {
-    datebasedid = 116769;
-  }
-  if (
-    new Date("01/1/2020").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2021").getTime()
-  ) {
-    datebasedid = 116770;
-  }
-  if (
-    new Date("01/1/2021").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2022").getTime()
-  ) {
-    datebasedid = 116771;
-  }
-  if (
-    new Date("01/1/2022").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2023").getTime()
-  ) {
-    datebasedid = 116772;
-  }
-  if (
-    new Date("01/1/2023").getTime() <= selectedDate &&
-    selectedDate < new Date("01/1/2024").getTime()
-  ) {
-    datebasedid = 116773;
-  }
-  // UPDATE: duplicate another if statement with everything augmented by 1
+  // UPDATE: increase bounds of if statement to include new year
   window.location.replace(
     String(window.location).split("#")[0] + "#" + Math.round(datebasedid)
   );

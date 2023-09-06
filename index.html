@@ -38,7 +38,7 @@
 	  gtag('config', 'UA-114291450-1');
 	</script>
 </head>
-<body onload="loadnewpage();" style="background-color: black;">
+<body onload="loadnewpage();">
 	<script src="script.js"></script>
 <div style="display: none; max-width:500px; overflow: scroll;" id="aboutbutton">
     <h2>About the Daily Bruin Print Archive</h2>
@@ -279,10 +279,18 @@
 				<!-- UPDATE: add a new option for the year	-->
 </select> <button onclick='rundate();' style='height:30px; padding-top: 2px; color: #555;'>Go!</button></div>
 </td></tr>
-<tr style="background-color: black;">
+<tr>
 	<td onclick='previousid();' class="pageswitch" onclick="return false;"><h3>&laquo;</h3></td><td id="archivedisplay" style="width:900px; text-align:center;"/><td onclick='nextid();' class="pageswitch" onclick="return false;"><h3>&raquo;</h3></td></tr>
-<tr style="height:30px;"><td colspan="3" style="width:100%;">
-<div id="footertext"><a onClick="about();" style="color:white; text-decoration: none;" data-fancybox data-src="#storiesbutton" href="javascript:;" onclick="return false;">Historical Highlights</a> – <a onClick="about();" style="color:white; text-decoration: none;" data-fancybox data-src="#aboutbutton" href="javascript:;" onclick="return false;">About</a> – <a href="https://dailybruin.com/contact" style="color:white; text-decoration: none;">Contact</a> – <a href="http://donate.uclastudentmedia.com/donate/" style="color:white; text-decoration: none;">Donate</a></div></td></tr>
+  <tr style="height:30px;">
+    <td colspan="3" style="width:100%;">
+      <div id="footertext">
+        <a onClick="about();" style="color:white; text-decoration: none;" data-fancybox data-src="#storiesbutton" href="javascript:;" onclick="return false;">Historical Highlights</a> – 
+        <a onClick="about();" style="color:white; text-decoration: none;" data-fancybox data-src="#aboutbutton" href="javascript:;" onclick="return false;">About</a> – 
+        <a href="https://dailybruin.com/contact" style="color:white; text-decoration: none;">Contact</a> – 
+        <a href="https://uclastudentmedia.com/donate/" style="color:white; text-decoration: none;">Donate</a>
+      </div>
+    </td>
+  </tr>
 </table>
 </body>
 </html>

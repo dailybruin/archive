@@ -129,11 +129,19 @@ select#monthselect, select#yearselect {
 div#imageframe {
     overflow-x: scroll;
     overflow-y: scroll;
-  background-color: black;
+  background-color: white;
   top:0;
   left:0;
   height:100%;
   width:auto;
+}
+div#imageframe a {
+  position: relative;
+  top:50%;
+  font-size: 36px;
+}
+#archiveIframe{
+  min-height: 300px;
 }
 img {
   max-height:100%; max-width:1000%;
