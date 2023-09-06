@@ -957,15 +957,10 @@ function loadnewpage() {
     // example: https://archive.org/details/ucladailybruin44losa/page/n0/mode/2up
     const archiveURL =
       `https://archive.org/details/ucladailybruin${reel}losa/page/n${parseInt(reelpage)}/`;
-    const selectedMonth = document.getElementById("monthselect").value; // integer
-    const monthText =
-      document.getElementById("monthselect").options[selectedMonth - 1]
-        .textContent;
-    const selectedYear = document.getElementById("yearselect").value;
     const newArchiveElement =
       "<a href='" +
       archiveURL +
-      `'> ${monthText} ${selectedYear} Archive Link</a>`;
+      `'> Reel ${reel} Archive Link</a>`;
     const oldElement =
     "<div id='imageframe'>" +
     /*"<img src='https://ia" + // image links changed and don't work
@@ -1038,13 +1033,13 @@ function loadnewpage() {
     // UPDATE: take the last part of the google drive link of the folder and add to the array above
     folder = folderlist[dataid - 116753]; //Minimum range for Google Drive is 116,753.
     let archiveDisplayElement;
-    const selectedYear = document.getElementById("yearselect").value;
+    const year = dataid - 116753 + 2003;
     if (folder.includes("?resourcekey=")) {
       archiveDisplayElement =
         "<div id='imageframe'><a href='https://drive.google.com/drive/folders/" +
         folder +
         "'>" +
-        `${selectedYear} Archive Folder` +
+        `${year} Archive Folder` +
         "</a></div>";
     } else {
       archiveDisplayElement =
