@@ -954,8 +954,11 @@ function loadnewpage() {
     server = parseInt(reeldata[reel][3]);
     tarzip = reeldata[reel][6];
     zip = parseInt(reeldata[reel][4]);
-    document.getElementById("archivedisplay").innerHTML =
-      "<div id='imageframe'><img src='https://ia" +
+    const archiveURL = "https://archive.org/details/ucladailybruin" + reel + "losa";
+    const selectedYear =  document.getElementById("yearselect").value;
+    const newArchiveElement ="<a href='" + archiveURL + `'> ${selectedYear} Archive Link</a>`
+    const oldElement =
+      "<div id='imageframe'><img src='https://ia" + // image links changed and don't work
       server +
       ".us.archive.org/BookReader/BookReaderImages.php?zip=/" +
       zip +
@@ -983,7 +986,8 @@ function loadnewpage() {
       zoom +
       "&rotate=" +
       rotate +
-      "'></div>";
+      "'>" + newArchiveElement + "</div>";
+    document.getElementById("archivedisplay").innerHTML = oldElement;
     document.getElementById("reeloptions").style.display = "block";
     document.getElementById("reeloptions").style.visibility = "visible";
   } else if (
@@ -994,23 +998,23 @@ function loadnewpage() {
     //Dbpageid range for google drive is 116,753 to 116,772.
     var dataid = dbpageid;
     document.getElementById("reeloptions").style.display = "none";
-    var folder = "0B8WE6yj3c61XUVNMTFQ3SllGazA";
+    var folder = "0B8WE6yj3c61XUVNMTFQ3SllGazA?resourcekey=0-zd6l6TVRHu1dlTFpOKhhTQ"; // 2017
     var folderlist = [
-      "0B9y1-prT44zAMjRjNXNEYlFPelk",
-      "0B9y1-prT44zAQUV5eVRJZHhpcWM",
-      "0B9y1-prT44zANGMxU3VHTnBpek0",
-      "0B9y1-prT44zAZW5YYkVWR1lBRVU",
-      "0B9y1-prT44zAT2JvalFwQlZid1E",
-      "0B9y1-prT44zAdE1BNUQ3RlY1b28",
-      "0B9y1-prT44zAeExhdGVfYm1FVE0",
-      "0B9y1-prT44zAdU16d0lNOGFNYzA",
-      "0B9y1-prT44zAUjhkc2dlY05fLVU",
-      "0B9y1-prT44zAVzlCTE9qMzRFZjA",
-      "0B9y1-prT44zASG9vQUdVYXBybFk",
-      "0B9y1-prT44zAQXhPRGFRTUVJVkE",
-      "0B9y1-prT44zAcVlwYlRFdGR3MWs",
-      "0B9y1-prT44zAeUVUNDg4UFdvU3M",
-      "0B8WE6yj3c61XUVNMTFQ3SllGazA",
+      "0B9y1-prT44zAMjRjNXNEYlFPelk?resourcekey=0-j4BkOw1e71-XAKhiDqalmg&usp=drive_link", // 2003
+      "0B9y1-prT44zAQUV5eVRJZHhpcWM?resourcekey=0-ucuXCMDVznBZtNnDhv89AQ&usp=drive_link",
+      "0B9y1-prT44zANGMxU3VHTnBpek0?resourcekey=0-Iav6_HY4pFImor640UOlXg&usp=drive_link",
+      "0B9y1-prT44zAZW5YYkVWR1lBRVU?resourcekey=0-N06Ur22T1-SNdb3SDvVBlQ",
+      "0B9y1-prT44zAT2JvalFwQlZid1E?resourcekey=0-l_Nr6CFXsGFhkYaQWjVzWQ&usp=drive_link",
+      "0B9y1-prT44zAdE1BNUQ3RlY1b28?resourcekey=0-pXjoqHSEl_EkhzfU49SYCg&usp=drive_link",
+      "0B9y1-prT44zAeExhdGVfYm1FVE0?resourcekey=0-PiyyZ85ladnV4m966uiQDw&usp=drive_link",
+      "0B9y1-prT44zAdU16d0lNOGFNYzA?resourcekey=0-yuaqV6GKvDgddxIzBG23Jg&usp=drive_link", // 2010
+      "0B9y1-prT44zAUjhkc2dlY05fLVU?resourcekey=0-V4R8jEp7wDWld4Ium23JSg&usp=drive_link",
+      "0B9y1-prT44zAVzlCTE9qMzRFZjA?resourcekey=0-9aq3Qd92AkrBSiHAhn3Prw&usp=drive_link",
+      "0B9y1-prT44zASG9vQUdVYXBybFk?resourcekey=0-yEIGMfKLWGsH2gfLpCMSTg&usp=drive_link", 
+      "0B9y1-prT44zAQXhPRGFRTUVJVkE?resourcekey=0-Riwx5k8zP86TQtLyg8wxFA&usp=drive_link",
+      "0B9y1-prT44zAcVlwYlRFdGR3MWs?resourcekey=0-hUJ91a89azdkRTNQD_MN2w&usp=drive_link",
+      "0B9y1-prT44zAeUVUNDg4UFdvU3M?resourcekey=0-buevVjEV7ecrr-ketdh7Cg",
+      "0B8WE6yj3c61XUVNMTFQ3SllGazA?resourcekey=0-zd6l6TVRHu1dlTFpOKhhTQ", // 2017
       "1IUbV74C31HOZcf9x97bDVce4hnfFKRlg",
       "1ay-ptXcLRx4yVaOH7xOeEkxmO6IVbdn0",
       "11qpdQ-t8nt_Rtx1t5VwotACKr_l08Xrt",
@@ -1020,11 +1024,22 @@ function loadnewpage() {
     ];
     // UPDATE: take the last part of the google drive link of the folder and add to the array above
     folder = folderlist[dataid - 116753]; //Minimum range for Google Drive is 116,753.
-    document.getElementById("archivedisplay").innerHTML =
-      "<div id='imageframe'><iframe src='https://drive.google.com/embeddedfolderview?id=" +
+    let archiveDisplayElement;
+    const selectedYear = document.getElementById("yearselect").value;
+    if (folder.includes("?resourcekey=")){
+      archiveDisplayElement =       "<div id='imageframe'><a href='https://drive.google.com/drive/folders/" +
+      folder +
+      "'>" + `${selectedYear} Archive Folder` + "</a></div>";
+    } 
+    else{
+      archiveDisplayElement = "<div id='imageframe'><iframe src='https://drive.google.com/embeddedfolderview?id=" +
       folder +
       "#grid' id='archiveIframe'></iframe></div>";
-  } else {
+    }
+    document.getElementById("archivedisplay").innerHTML = archiveDisplayElement;
+  }
+
+  else {
     alert("Select a valid number.");
   }
   var tracking;
