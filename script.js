@@ -10,7 +10,9 @@ var losax;
 var customrotate = 0;
 var preroundrotate = 0;
 var driveurl = "";
-var dbpageid = "116773"; // UPDATE: change default year on load. (Add 1)
+const CURRENT_YEAR = 2024; // UPDATE: change max year. (Add 1)
+const DBPAGEID_MAX = 116774; // UPDATE: change default year on load. (Add 1)
+var dbpageid = DBPAGEID_MAX.toString();
 var reeldata = [
   [
     "reel_number",
@@ -231,7 +233,7 @@ function trackhash() {
     String(window.location).split("#")[1] === undefined ||
     String(window.location).split("#")[1] == ""
   ) {
-    window.location.replace(String(window.location).split("#")[0] + "#116773"); //On load without specified dbpageid, dbpageid is set to 116,768.
+    window.location.replace(String(window.location).split("#")[0] + `#${DBPAGEID_MAX}`); //On load without specified dbpageid, dbpageid is set to 116,768.
   } else if (String(window.location).split("#")[1] != dbpageid) {
     dbpageid = String(window.location).split("#")[1];
     loadnewpage();
@@ -276,7 +278,7 @@ function zoomout() {
 
 function previousid() {
   var newid;
-  if (parseInt(dbpageid) > 1 && parseInt(dbpageid) <= 116773) {
+  if (parseInt(dbpageid) > 1 && parseInt(dbpageid) <= DBPAGEID_MAX) {
     //Maximum possible value for dbpageid is currently set to 116,773.
     newid = parseInt(dbpageid) - 1;
     window.location.replace(
@@ -288,8 +290,8 @@ function previousid() {
 
 function nextid() {
   var newid;
-  if (parseInt(dbpageid) >= 1 && parseInt(dbpageid) < 116773) {
-    //Maximum possible value for dbpageid is currently set to 116,773.
+  if (parseInt(dbpageid) >= 1 && parseInt(dbpageid) < DBPAGEID_MAX) {
+    //Maximum possible value for dbpageid is currently set to 116,774.
     newid = parseInt(dbpageid) + 1;
     window.location.replace(
       String(window.location).split("#")[0] + "#" + newid
@@ -1000,7 +1002,7 @@ function loadnewpage() {
   } else if (
     isInteger(Number(dbpageid)) == true &&
     Number(dbpageid) >= 116753 &&
-    Number(dbpageid) <= 116773
+    Number(dbpageid) <= DBPAGEID_MAX
   ) {
     //Dbpageid range for google drive is 116,753 to 116,772.
     var dataid = dbpageid;
@@ -1029,6 +1031,7 @@ function loadnewpage() {
       "1hXyfU3sZJfJi3ojFWtMyso2-IZqEgPkz",
       "1KOq7rtNH_Uh6InfMhHYXtynlIFtkzzKf",
       "13NPN3nJ4FchIlr6UQFXc9Da2ndh7xZrR",
+      "1eX86bnMjMpzjARPYrOpQLquw6rIDDfcl",
     ];
     // UPDATE: take the last part of the google drive link of the folder and add to the array above
     folder = folderlist[dataid - 116753]; //Minimum range for Google Drive is 116,753.
@@ -3048,8 +3051,8 @@ function rundate() {
           (new Date("01/1/2003").getTime() -
             new Date("10/21/2002").getTime())) +
       116153;
-  } else if (selectedYearNumber >= 2003 && selectedYearNumber <= 2023) {
-    let offset = selectedYearNumber - 2003;
+  } else if (selectedYearNumber >= 2003 && selectedYearNumber <= CURRENT_YEAR) {
+    const offset = selectedYearNumber - 2003;
     datebasedid = 116753 + offset;
   }
   // UPDATE: increase bounds of if statement to include new year
