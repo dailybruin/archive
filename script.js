@@ -957,8 +957,9 @@ function loadnewpage() {
     tarzip = reeldata[reel][6];
     zip = parseInt(reeldata[reel][4]);
     // example: https://archive.org/details/ucladailybruin44losa/page/n0/mode/2up
+    const reel_str = reel.toString(10).padStart(2, '0'); // reels 1-9 need leading zeros
     const archiveURL =
-      `https://archive.org/details/ucladailybruin${reel}losa/page/n${parseInt(reelpage)}/`;
+      `https://archive.org/details/ucladailybruin${reel_str}losa/page/n${parseInt(reelpage)}/`;
     const newArchiveElement =
       "<a href='" +
       archiveURL +
