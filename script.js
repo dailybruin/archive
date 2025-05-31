@@ -10,8 +10,8 @@ var losax;
 var customrotate = 0;
 var preroundrotate = 0;
 var driveurl = "";
-const CURRENT_YEAR = 2024; // UPDATE: change max year. (Add 1)
-const DBPAGEID_MAX = 116774; // UPDATE: change default year on load. (Add 1)
+const CURRENT_YEAR = 2025; // UPDATE: change max year. (Add 1)
+const DBPAGEID_MAX = 116775; // UPDATE: change default year on load. (Add 1)
 var dbpageid = DBPAGEID_MAX.toString();
 var reeldata = [
   [
@@ -233,7 +233,9 @@ function trackhash() {
     String(window.location).split("#")[1] === undefined ||
     String(window.location).split("#")[1] == ""
   ) {
-    window.location.replace(String(window.location).split("#")[0] + `#${DBPAGEID_MAX}`); //On load without specified dbpageid, dbpageid is set to 116,768.
+    window.location.replace(
+      String(window.location).split("#")[0] + `#${DBPAGEID_MAX}`
+    ); //On load without specified dbpageid, dbpageid is set to 116,768.
   } else if (String(window.location).split("#")[1] != dbpageid) {
     dbpageid = String(window.location).split("#")[1];
     loadnewpage();
@@ -957,16 +959,15 @@ function loadnewpage() {
     tarzip = reeldata[reel][6];
     zip = parseInt(reeldata[reel][4]);
     // example: https://archive.org/details/ucladailybruin44losa/page/n0/mode/2up
-    const reel_str = reel.toString(10).padStart(2, '0'); // reels 1-9 need leading zeros
-    const archiveURL =
-      `https://archive.org/details/ucladailybruin${reel_str}losa/page/n${parseInt(reelpage)}/`;
+    const reel_str = reel.toString(10).padStart(2, "0"); // reels 1-9 need leading zeros
+    const archiveURL = `https://archive.org/details/ucladailybruin${reel_str}losa/page/n${parseInt(
+      reelpage
+    )}/`;
     const newArchiveElement =
-      "<a href='" +
-      archiveURL +
-      `'> Reel ${reel} Archive Link</a>`;
+      "<a href='" + archiveURL + `'> Reel ${reel} Archive Link</a>`;
     const oldElement =
-    "<div id='imageframe'>" +
-    /*"<img src='https://ia" + // image links changed and don't work
+      "<div id='imageframe'>" +
+      /*"<img src='https://ia" + // image links changed and don't work
     server +
     ".us.archive.org/BookReader/BookReaderImages.php?zip=/" +
     zip +
@@ -995,8 +996,8 @@ function loadnewpage() {
     "&rotate=" +
     rotate +
     "'>" +*/
-    newArchiveElement +
-    "</div>";
+      newArchiveElement +
+      "</div>";
     document.getElementById("archivedisplay").innerHTML = oldElement;
     document.getElementById("reeloptions").style.display = "block";
     document.getElementById("reeloptions").style.visibility = "visible";
@@ -1033,6 +1034,7 @@ function loadnewpage() {
       "1KOq7rtNH_Uh6InfMhHYXtynlIFtkzzKf",
       "13NPN3nJ4FchIlr6UQFXc9Da2ndh7xZrR",
       "1eX86bnMjMpzjARPYrOpQLquw6rIDDfcl",
+      "1zLxwPjBI-IDXnbTbo21ulZmYEweikGIW",
     ];
     // UPDATE: take the last part of the google drive link of the folder and add to the array above
     folder = folderlist[dataid - 116753]; //Minimum range for Google Drive is 116,753.
