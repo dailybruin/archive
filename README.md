@@ -30,6 +30,36 @@ http-server -p 8000
 Then open `http://localhost:8000` in your browser.
 
 ## Deployment
-1. Update the code to include the new year's papers (remember to also increment all maximum ids by 1, check previous commits)
-2. Check netlify to see if the website is deployed successfully
+
+This is a **static site** (no build step). Deploy the folder as-is.
+
+### Option 1: Netlify (recommended for this project)
+
+1. Push the repo to **GitHub** (or GitLab/Bitbucket).
+2. Go to [netlify.com](https://www.netlify.com) → **Add new site** → **Import an existing project**.
+3. Connect your Git provider and select the `archive` repo.
+4. **Build settings:** leave **Build command** empty; set **Publish directory** to `.` (root).
+5. Deploy. Netlify will serve `index.html` at the root.
+
+**Drag-and-drop:** You can also go to [app.netlify.com/drop](https://app.netlify.com/drop) and drag the `archive` folder to deploy without Git.
+
+### Option 2: Vercel
+
+1. Install the CLI: `npm i -g vercel`
+2. In the project folder: `vercel` and follow the prompts (root directory = current folder).
+3. Or connect the repo at [vercel.com](https://vercel.com) and deploy; no build command needed.
+
+### Option 3: GitHub Pages
+
+1. Push the repo to GitHub.
+2. **Settings** → **Pages** → Source: **Deploy from a branch**.
+3. Branch: `main` (or `master`), folder: **/ (root)**. Save.
+4. The site will be at `https://<username>.github.io/<repo-name>/`.
+5. If the repo is named `archive`, set the site’s **base URL** in your app if you use relative links (this project uses relative links, so they work as-is under a subpath).
+
+### Before each deployment
+
+1. Update the code for the new year’s papers (search for `UPDATE:` in `index.html` and `script.js`).
+2. Increment maximum ids by 1 where indicated (see previous commits for reference).
+3. After deploying, confirm the site loads and that date/year ranges work as expected.
 
